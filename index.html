@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lash & Beauty Selényi Renáta - KEZDŐLAP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==================== ALAP ÉS EGYÉB STÍLUSOK (KOMBINÁLT) ==================== */
+        :root {
+            --color-black: #000000;
+            --color-white: #FFFFFF;
+            --color-gold: #D4AF37; 
+            --color-light-gray: #333333; /* Főoldali Háttér és listaelem háttér */
+            --color-pink: #FEEAEA; /* Árlista Háttér */
+            --color-dark-gray: #555555;
+            --font-primary: 'Playfair Display', serif;
+            --font-secondary: 'Lato', sans-serif;
+        }
+
+        /* Alapértelmezett, Főoldal stílusok (fekete háttér, fehér szöveg) */
+        body {
+            font-family: var(--font-secondary);
+            color: var(--color-white); 
+            background-color: var(--color-black); 
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Árlista szekciók egyedi stílusa (a JS ezt állítja be aktívvá váláskor) */
+        .pink-background-style {
+            background-color: var(--color-pink) !important;
+            color: var(--color-black) !important; 
+        }
+        .pink-background-style h2, .pink-background-style h3 {
+            color: var(--color-black) !important; 
+        }
+        
+        /* A főoldal h2/h3 stílusa a saját hátterén */
+        .main-content.hu h2, .main-content.hu h3, .main-content.en h2, .main-content.en h3 { color: var(--color-white); }
+        .pink-background-style h2, .pink-background-style h3 { color: var(--color-black) !important; }
+
+
+        h1, h2, h3 {
+            font-family: var(--font-primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        section {
+            /* Az inner content kapja a paddingot, itt csak az alap színeket tartjuk meg */
+            padding: 0; 
+            text-align: center;
+            background-color: var(--color-black); 
+            color: var(--color-white);
+            min-height: 0; 
+            display: none; /* Alapértelzésben MINDEN elrejtve! */
+        }
+        
+        /* Aktív szekció felülírja a display: none-t */
+        section.active {
+            display: block; 
+        }
+
+        .cta-button {
+            background-color: var(--color-gold); 
+            color: var(--color-black);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid var(--color-gold);
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-black);
+            color: var(--color-gold);
+        }
+
+        /* ==================== FEJLÉC ÉS NAVIGÁCIÓ ==================== */
+        header {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 15px 2%; 
+            min-height: 80px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border: 2px solid var(--color-gold); 
+            border-top: none; 
+        }
+
+        .logo-img { height: 70px; width: auto; margin-right: 0; max-height: 70px; }
+        
+        .language-switcher { margin-left: 20px; }
+        .lang-button { 
+            background: none; 
+            border: 1px solid var(--color-white); 
+            color: var(--color-white); 
+            padding: 5px 10px; 
+            margin: 0 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .lang-button.active { 
+            background-color: var(--color-gold); 
+            color: var(--color-black); 
+            border-color: var(--color-gold); 
+        }
+        
+        nav { display: flex; align-items: center; flex-grow: 1; justify-content: center; }
+
+        /* Fontos: minden menüpontnak kell data-hu és data-en attribútum a JS-hez! */
+        nav a { 
+            color: var(--color-white); 
+            text-decoration: none; 
+            margin: 0 15px; 
+            padding: 5px 0; 
+            text-transform: uppercase; 
+            font-weight: 400; 
+            letter-spacing: 1px; 
+            transition: color 0.3s, border-bottom 0.3s; 
+            white-space: nowrap; 
+        }
+        
+        nav a:hover, nav a.active { color: var(--color-gold); border-bottom: 3px solid var(--color-gold); }
+        
+        .header-cta .cta-button { padding: 10px 20px; font-size: 0.9em; margin: 0; border-width: 1px; color: var(--color-gold); background-color: var(--color-black); border-color: var(--color-gold); }
+        .header-cta .cta-button:hover { background-color: var(--color-gold); color: var(--color-black); }
+
+        /* ==================== KÉPSOROZAT SÁV ==================== */
+        .image-carousel-wrapper {
+            height: 25vh; /* Sokkal vékonyabb sáv */
+            position: relative; 
+            overflow: hidden; 
+            width: 100%;
+            display: flex; /* Középre igazításhoz */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            background-size: cover; 
+            background-position: center; 
+            opacity: 0; 
+            transition: opacity 1s ease-in-out; 
+        }
+        .carousel-item.active { 
+            opacity: 1; 
+        }
+
+        /* Belső Tartalom Konténer (megkapja a paddingot) */
+        .section-inner-content {
+            padding: 100px 5%; 
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* ==================== RÓLAM SZEKCIÓ ==================== */
+        .about-content { display: flex; align-items: center; justify-content: center; max-width: 1000px; margin: 0 auto; text-align: left; gap: 60px; }
+        .about-image img { max-width: 250px; height: auto; border: 1px solid var(--color-gold); object-fit: cover; }
+
+        /* ==================== ÁR TÁBLÁZAT KÉP ÉS LISTA ==================== */
+        .pricing-image { max-width: 600px; width: 100%; height: auto; margin: 0 auto 50px auto; border: 3px solid var(--color-gold); display: block; }
+        .service-list { display: flex; justify-content: center; flex-wrap: wrap; margin-top: 40px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+        .service-item { 
+            width: 45%; 
+            margin: 15px 2%; 
+            padding: 20px 30px; 
+            border: 1px solid var(--color-gold); 
+            background-color: var(--color-white); 
+            text-align: left; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            /* Szöveg és ár fekete legyen a rózsaszín háttéren! */
+            color: var(--color-black);
+        }
+        .service-item h3 { color: var(--color-gold); margin: 0; letter-spacing: 1px; font-size: 1.3em; }
+        .service-item p { margin: 5px 0 0 0; font-size: 0.9em; color: var(--color-dark-gray); }
+        .price { color: var(--color-black); font-size: 1.6em; font-weight: 700; white-space: nowrap; }
+        .note { margin-top: 30px; font-style: italic; font-size: 0.9em; }
+
+        /* ==================== GALÉRIA STÍLUSOK ==================== */
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 15px; 
+            margin-top: 50px; 
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .gallery-item { 
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            transition: transform 0.3s; 
+            display: block;
+        }
+        .gallery-item:hover { 
+            transform: scale(1.03); 
+        }
+
+        /* ==================== ÁPOLÁS STÍLUSOK ==================== */
+        .aftercare-list { 
+            list-style: none; 
+            padding: 0; 
+            max-width: 800px; 
+            margin: 50px auto 0 auto;
+            text-align: left;
+        }
+        .aftercare-list li { 
+            margin-bottom: 30px; 
+            padding: 20px; 
+            border-left: 5px solid var(--color-gold); 
+            background-color: var(--color-light-gray); /* #333333 */
+        }
+        .aftercare-list h3 { 
+            margin-top: 0; 
+            color: var(--color-gold); 
+            font-size: 1.4em;
+        }
+        .aftercare-list p { 
+            margin: 0; 
+            font-size: 1.0em; 
+            color: var(--color-white);
+        }
+        
+        .disclaimer { 
+            margin-top: 50px; 
+            padding: 20px; 
+            border: 1px dashed var(--color-gold); 
+            max-width: 800px; 
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        
+        /* ==================== SZETT STÍLUSOK STÍLUSA (FRISSÍTVE) ==================== */
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+            text-align: left;
+        }
+        
+        .style-card {
+            background-color: var(--color-light-gray); /* #333333 */
+            padding: 0; /* A tartalom kap belső paddingot */
+            border: 1px solid var(--color-gold);
+            position: relative;
+        }
+        
+        /* ÚJ KÉP STÍLUS */
+        .style-card-image {
+            width: 100%;
+            height: 250px; /* Fix magasság a konzisztens megjelenéshez */
+            object-fit: cover;
+            display: block;
+        }
+        
+        .style-card-content {
+             padding: 30px; /* Belső padding a szövegnek */
+        }
+        
+        .style-card h3 {
+            color: var(--color-gold);
+            font-size: 1.8em;
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .style-card p {
+            font-size: 1.0em;
+            color: var(--color-white);
+        }
+        
+        .key-features {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .key-features li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95em;
+        }
+        
+        .key-features li::before {
+            content: '★';
+            color: var(--color-gold);
+            position: absolute;
+            left: 0;
+        }
+
+
+        /* ==================== LÁBLÉC ==================== */
+        footer { background-color: var(--color-black); color: var(--color-white); padding: 40px 5%; }
+        footer a { color: var(--color-gold); }
+
+        /* Reszponzivitás */
+        @media (max-width: 992px) { 
+            header { flex-direction: column; align-items: flex-start; padding: 15px 5%; min-height: auto; }
+            .logo-img { margin-bottom: 10px; }
+            nav { flex-wrap: wrap; justify-content: flex-start; margin-top: 10px; width: 100%; }
+            nav a { margin: 5px 10px 5px 0; }
+            .header-cta { margin-top: 15px; margin-left: 0; width: 100%; text-align: center; }
+            .service-item { width: 90%; }
+            .about-content { flex-direction: column; text-align: center; }
+            .language-switcher { margin-left: 0; margin-top: 10px; }
+            .style-grid { grid-template-columns: 1fr; } /* Szett stílusok mobilon */
+            .style-card-image { height: 200px; } /* Kisebb kép mobilon */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Lash & Beauty Selényi Renáta logo" class="logo-img">
+        </div>
+        
+        <nav>
+            <a href="#home" data-target="home" data-hu="Kezdőlap" data-en="Home">Kezdőlap</a> 
+            <a href="#lashsets" data-target="lashsets" data-hu="Szett Stílusok" data-en="Lash Sets">Szett Stílusok</a>
+            <a href="#pricing" data-target="pricing" data-hu="Árlista" data-en="Pricing">Árlista</a>
+            <a href="#gallery" data-target="gallery" data-hu="Galéria" data-en="Gallery">Galéria</a>
+            <a href="#aftercare" data-target="aftercare" data-hu="Ápolás" data-en="Aftercare">Ápolás</a> 
+            <a href="policy.html" data-target="policy" data-hu="Házirend & GYIK" data-en="Policy & FAQ">Házirend & GYIK</a>
+        </nav>
+        
+        <div class="language-switcher">
+            <button class="lang-button" data-lang="hu">HU</button>
+            <button class="lang-button" data-lang="en">EN</button>
+        </div>
+        
+        <div class="header-cta">
+            <a href="mailto:selenyir@gmail.com" class="cta-button" data-hu="Foglalás" data-en="Book Now">Foglalás</a>
+        </div>
+    </header>
+    
+    
+    <section id="home-hu" class="main-content hu">
+
+        <div class="image-carousel-wrapper">
+            <div class="carousel-item active" style="background-image: url('images/527868061_18518466280056721_1096875789101664866_n.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('images/565965438_18533491621056721_8673664543933808571_n.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('images/566349773_18533491450056721_6061933695575078252_n.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('images/572653556_18536206900056721_936525573862250164_n.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('images/573631823_18536206312056721_2692097198072567992_n.jpg');"></div>
+            <div class="hero-content"></div>
+        </div>
+
+        <div class="section-inner-content">
+            <div id="about-hu" class="content-block">
+                <h2>A 10 ÉV, AMI MÁRKA LETT</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p style="font-size: 1.1em;">
+                            Szakmai karrierem egy évtizede indult, azóta építem a **Lash & Beauty Selényi Renáta** márkát, mely a minőség, a precizitás és a vendégközpontú luxus szinonimája lett. Nem csupán szempilla hosszabbítást végzek, hanem egyedi stílust, tartósságot és kényelmet garantálok.
+                        </p>
+                        <p style="font-size: 1.1em;">
+                            Ez alatt a 10 év alatt folyamatosan képeztem magam a legújabb technikákban, hogy a legkifinomultabb 2D-től a legdrámaibb Mega Volume szettekig mindent a legmagasabb színvonalon nyújthassak. Vendégeim számára a szépség és az egészség a legfontosabb, ezért kizárólag prémium minőségű, allergiamentes anyagokkal dolgozom.
+                        </p>
+                        <p style="font-size: 1.1em;">
+                            A célom: hogy mindenki magabiztosan, ragyogó tekintettel távozzon tőlem. A Lash & Beauty nem csak munka, hanem a szenvedélyem.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="en.png" alt="Selényi Renáta portréfotója" title="Selényi Renáta">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="training-hu" class="content-block" style="padding-top: 100px;">
+                <h2>Légy Szempilla Tréner!</h2>
+                <p>A tudás, ami a szakmai sikerhez elengedhetetlen. Kezdő és haladó képzések.</p>
+                <div class="training-cta-box">
+                    <h3>MASTER CLASS KÉPZÉS</h3>
+                    <p>Emeld a technikádat a legmagasabb szintre! Limitált helyek.</p>
+                    <a href="#" class="cta-button" data-hu="Jelentkezési feltételek" data-en="Application Requirements">Jelentkezési feltételek</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="lashsets-hu" class="main-content hu">
+        <div class="section-inner-content">
+            <h1>Szempilla Szett Stílusok: 2D-től a Mega Volume-ig</h1>
+            <p style="font-size: 1.1em; max-width: 800px; margin: 30px auto;">
+                Minden szett típus egyedi megjelenést biztosít. Válassza ki az Ön stílusához és természetes szempillái állapotához leginkább illő opciót.
+            </p>
+            
+            <div class="style-grid">
+                <div class="style-card">
+                    <img src="images/Lash Set types_2.png" alt="2D Szett" class="style-card-image">
+                    <div class="style-card-content">
+                        <h3>2D Szett (Hybrid / Light Volume)</h3>
+                        <p>A legtermészetesebb Volume technika, ahol minden saját pillára két vékony Volume fan kerül. Ideális azoknak, akik finom kiemelést szeretnének.</p>
+                        <ul class="key-features">
+                            <li>**Hatás:** Természetes, szolid</li>
+                            <li>**Pillák száma:** 2 szál Volume fan egy saját pillára</li>
+                            <li>**Kinek ajánlott:** Akik először próbálnak Volume szettet, vagy természetes, de dúsabb hatást szeretnének.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="style-card">
+                    <img src="images/Lash Set types_3.png" alt="3-7D Volume Szett" class="style-card-image">
+                    <div class="style-card-content">
+                        <h3>3-7D Volume Szett</h3>
+                        <p>Egy teltebb, sűrűbb pillasor. Ideális a drámaibb tekintet eléréséhez, tökéletes a vékony, ritka saját pillákra is, mivel a Volume fanok fednek.</p>
+                        <ul class="key-features">
+                            <li>**Hatás:** Drámai, sűrű, Volume</li>
+                            <li>**Pillák száma:** 3-7 szál Volume fan egy saját pillára</li>
+                            <li>**Kinek ajánlott:** Akik már tapasztaltak a Volume szettekkel, vagy sűrű, feltűnő pillasort szeretnének.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="style-card">
+                    <img src="images/Lash Set types_4.png" alt="8-10D Mega Volume Szett" class="style-card-image">
+                    <div class="style-card-content">
+                        <h3>8-10D Mega Volume Szett</h3>
+                        <p>A legintenzívebb, legsűrűbb hatás, maximális dráma és teltség. Extrém vékony pillákból készített fanok garantálják a súlytalan és tartós viseletet.</p>
+                        <ul class="key-features">
+                            <li>**Hatás:** Extrém, Ultra Volume, legintenzívebb sűrűség</li>
+                            <li>**Pillák száma:** 8-10 szál (vagy több) Volume fan egy saját pillára</li>
+                            <li>**Kinek ajánlott:** Extrém sminket kedvelőknek, fellépő művészeknek, vagy maximális dúsaságot igénylőknek.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#pricing-hu" class="cta-button" data-hu="Árlista megtekintése" data-en="View Pricing">Árlista megtekintése</a>
+        </div>
+    </section>
+
+    <section id="pricing-hu" class="main-content hu pink-background-style">
+        <div class="section-inner-content">
+            <h2>Árlista 2025</h2>
+            <img src="images/arlistas.png" alt="Részletes árlista fotó" class="pricing-image">
+            
+            <div class="service-list">
+                <div class="service-item">
+                    <div class="service-item-title"><h3>2D Szett</h3><p>Új szett</p></div>
+                    <div class="price">21.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>2D Szett Töltés</h3><p>Töltés (max. 28 napig)</p></div>
+                    <div class="price">18.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>3-4D Szett</h3><p>Új szett</p></div>
+                    <div class="price">24.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>3-4D Szett Töltés</h3><p>Töltés (max. 28 napig)</p></div>
+                    <div class="price">19.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>5-7D Volume Szett</h3><p>Új szett</p></div>
+                    <div class="price">29.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>5-7D Volume Töltés</h3><p>Töltés (max. 28 napig)</p></div>
+                    <div class="price">24.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>8-10D Mega Volume Szett</h3><p>Új szett</p></div>
+                    <div class="price">31.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>8-10D Mega Volume Töltés</h3><p>Töltés (max. 28 napig)</p></div>
+                    <div class="price">26.000 Ft</div>
+                </div>
+                 <div class="service-item" style="width: 45%;">
+                    <div class="service-item-title"><h3>Szempilla Sampon Szett</h3></div>
+                    <div class="price">4.000 Ft</div>
+                </div>
+                <div class="service-item" style="width: 45%;">
+                    <div class="service-item-title"><h3>Szempilla Sampon Utántöltő</h3></div>
+                    <div class="price">2.000 Ft</div>
+                </div>
+                <div class="service-item" style="width: 45%;">
+                    <div class="service-item-title"><h3>Szempilla Leszedés</h3></div>
+                    <div class="price">3.000 - 5.000 Ft</div>
+                </div>
+                <div class="service-item" style="width: 45%;">
+                    <div class="service-item-title"><h3>Sminklemosás</h3></div>
+                    <div class="price">2.000 Ft</div>
+                </div>
+            </div>
+            <p class="note">Kérjük, vegye figyelembe, hogy a töltés árak csak a legfeljebb **28 napon belüli** visszatöltés esetén érvényesek.</p>
+        </div>
+    </section>
+
+    <section id="gallery-hu" class="main-content hu">
+        <div class="section-inner-content">
+            <h2>Galéria</h2>
+            <div class="gallery-grid">
+                <img src="images/527473906_18518464957056721_8327008335721350372_n.jpg" alt="Szempilla fotó 1" class="gallery-item">
+                <img src="images/527600572_18518463913056721_5043533836132707011_n.jpg" alt="Szempilla fotó 2" class="gallery-item">
+                <img src="images/527835898_18518465845056721_641603139710153374_n.jpg" alt="Szempilla fotó 3" class="gallery-item">
+                <img src="images/527868061_18518466280056721_1096875789101664866_n.jpg" alt="Szempilla fotó 4" class="gallery-item">
+                <img src="images/527868061_18518466280056721_1096875789101664866_n (1).jpg" alt="Szempilla fotó 5" class="gallery-item">
+                <img src="images/528030995_18518465077056721_9150396120226703631_n.jpg" alt="Szempilla fotó 6" class="gallery-item">
+                <img src="images/528047123_18518463724056721_3335402031074950460_n.jpg" alt="Szempilla fotó 7" class="gallery-item">
+                <img src="images/528563236_18518465290056721_5482978350583834318_n.jpg" alt="Szempilla fotó 8" class="gallery-item">
+                <img src="images/561329088_18530708695056721_8234146038082791537_n.jpg" alt="Szempilla fotó 9" class="gallery-item">
+                <img src="images/565551194_18533478448056721_6251122096457703170_n.jpg" alt="Szempilla fotó 10" class="gallery-item">
+                <img src="images/565645457_18533480596056721_7152556860313179970_n.jpg" alt="Szempilla fotó 11" class="gallery-item">
+                <img src="images/565965438_18533491621056721_8673664543933808571_n.jpg" alt="Szempilla fotó 12" class="gallery-item">
+                <img src="images/566349773_18533491450056721_6061933695575078252_n.jpg" alt="Szempilla fotó 13" class="gallery-item">
+                <img src="images/566783389_18533477920056721_9056916214488788190_n.jpg" alt="Szempilla fotó 14" class="gallery-item">
+                <img src="images/571200028_18535990555056721_3081417101746111157_n.jpg" alt="Szempilla fotó 15" class="gallery-item">
+                <img src="images/572653556_18536206900056721_936525573862250164_n.jpg" alt="Szempilla fotó 16" class="gallery-item">
+                <img src="images/573123772_18535954561056721_2038097699687542587_n.jpg" alt="Szempilla fotó 17" class="gallery-item">
+                <img src="images/573327522_18535953133056721_4304600888832919086_n.jpg" alt="Szempilla fotó 18" class="gallery-item">
+                <img src="images/573631823_18536206312056721_2692097198072567992_n.jpg" alt="Szempilla fotó 19" class="gallery-item">
+            </div>
+            <p style="margin-top: 50px;">Kövesse Instagram oldalunkat még több fotóért!</p>
+            <a href="https://www.instagram.com/selenyi_renata_lashandbeauty/" target="_blank" class="cta-button" data-hu="Instagram oldal" data-en="View Instagram">Instagram oldal</a>
+        </div>
+    </section>
+    
+    <section id="aftercare-hu" class="main-content hu">
+        <div class="section-inner-content">
+            <h2>Szempilla Ápolási Útmutató</h2>
+            <p style="font-size: 1.1em; margin-bottom: 40px;">A tökéletes tartósság és higiénia érdekében kövesse az alábbi lépéseket.</p>
+            
+            <ul class="aftercare-list">
+                <li>
+                    <h3>Az Első 48 Óra Szabálya</h3>
+                    <p>A szempilla felhelyezése után **48 óráig** kerülje a víz, a gőz, a szauna, és a magas páratartalom közvetlen érintkezését. Ez idő alatt szilárdul meg véglegesen a ragasztó.</p>
+                </li>
+                <li>
+                    <h3>Mindennapi Tisztítás ÉS Higiénia</h3>
+                    <p>Naponta vagy kétnaponta egyszer, de **feltétlenül** tisztítsa meg szempilláit speciális szempilla samponnal (ami nálunk megvásárolható). A tiszta szempilla nemcsak higiénikus, de a ragasztó is jobban tart a tiszta felületen. A kosz, por és olaj gyengíti a ragasztó kötését.</p>
+                </li>
+                <li>
+                    <h3>Olaj- és Zsírmentes Termékek</h3>
+                    <p>Kerülje az olaj alapú sminklemosókat, arckrémeket és szérumokat a szemkörnyéken. Az olaj feloldja a szempilla ragasztóját, ami a szettek idő előtti hullását okozza.</p>
+                </li>
+                <li>
+                    <h3>Kerülje a Dörgölést és Húzogatást</h3>
+                    <p>Ne dörzsölje a szemét és ne húzogassa a pillákat. Ha viszket, finoman simítsa át a szemhéjat. A szettek eltávolítását mindig bízza szakemberre!</p>
+                </li>
+                <li>
+                    <h3>Fésülés</h3>
+                    <p>A szempillákat naponta, tisztítás után, még nedvesen, vagy szárazon fésülje át a kapott kefével, hogy megtartsa a szettek formáját és elrendezését.</p>
+                </li>
+                <li>
+                    <h3>Műszempilla Maszk és Szempillaspirál</h3>
+                    <p>NE használjon szempillaspirált a műszempillákra, különösen nem vízállót. Ha mégis szeretne spirált használni, kérjük, csak a hegyére tegyen, és győződjön meg róla, hogy az kifejezetten műszempillákhoz való, olajmentes termék.</p>
+                </li>
+            </ul>
+            
+            <div class="disclaimer">
+                <h3>Fontos Emlékeztető</h3>
+                <p>A szempillákat átlagosan 2-3 hetente szükséges tölteni a tartósság megőrzése érdekében.</p>
+            </div>
+            
+            <a href="mailto:selenyir@gmail.com" class="cta-button" data-hu="Időpontfoglalás" data-en="Book Appointment">Időpontfoglalás</a>
+        </div>
+    </section>
+
+    
+    <section id="home-en" class="main-content en">
+        <div class="image-carousel-wrapper">
+            <div class="carousel-item active" style="background-image: url('images/527868061_18518466280056721_1096875789101664866_n.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('images/565965438_18533491621056721_8673664543933808571_n.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('images/566349773_18533491450056721_6061933695575078252_n.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('images/572653556_18536206900056721_936525573862250164_n.jpg');"></div>
+            <div class="carousel-item" style="background-image: url('images/573631823_18536206312056721_2692097198072567992_n.jpg');"></div>
+            <div class="hero-content"></div>
+        </div>
+        
+        <div class="section-inner-content">
+            <div id="about-en" class="content-block">
+                <h2>A DECADE OF BEAUTY EXCELLENCE</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p style="font-size: 1.1em;">
+                            My professional journey began a decade ago, building the **Lash & Beauty Selényi Renáta** brand, which has become synonymous with quality, precision, and customer-focused luxury. I don't just apply lash extensions; I guarantee a unique style, durability, and comfort.
+                        </p>
+                        <p style="font-size: 1.1em;">
+                            Over these 10 years, I've continuously trained in the latest techniques to provide everything from the most subtle 2D to the most dramatic Mega Volume sets at the highest standard. My clients' beauty and health are paramount, which is why I only work with premium, hypoallergenic materials.
+                        </p>
+                        <p style="font-size: 1.1em;">
+                            My goal: for everyone to leave feeling confident and with radiant eyes. Lash & Beauty is not just work; it's my passion.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <img src="en.png" alt="Selényi Renáta portréfotója" title="Selényi Renáta">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="training-en" class="content-block" style="padding-top: 100px;">
+                <h2>Become a Lash Trainer!</h2>
+                <p>The knowledge that is essential for professional success. Beginner and advanced training.</p>
+                <div class="training-cta-box">
+                    <h3>MASTER CLASS TRAINING</h3>
+                    <p>Elevate your technique to the highest level! Limited spots.</p>
+                    <a href="#" class="cta-button" data-hu="Jelentkezési feltételek" data-en="Application Requirements">Application Requirements</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lashsets-en" class="main-content en">
+        <div class="section-inner-content">
+            <h1>Lash Set Styles: From 2D to Mega Volume</h1>
+            <p style="font-size: 1.1em; max-width: 800px; margin: 30px auto;">
+                Each set style offers a unique look. Choose the option that best suits your style and the condition of your natural lashes.
+            </p>
+            
+            <div class="style-grid">
+                <div class="style-card">
+                    <img src="images/Lash Set types_2.png" alt="2D Set" class="style-card-image">
+                    <div class="style-card-content">
+                        <h3>2D Set (Hybrid / Light Volume)</h3>
+                        <p>The most natural Volume technique, where two thin Volume fans are applied to each natural lash. Ideal for those who desire a subtle enhancement.</p>
+                        <ul class="key-features">
+                            <li>**Effect:** Natural, subtle</li>
+                            <li>**Number of Lashes:** 2 Volume fans per natural lash</li>
+                            <li>**Recommended for:** First-time Volume clients or those wanting a natural but denser look.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="style-card">
+                    <img src="images/Lash Set types_3.png" alt="3-7D Volume Set" class="style-card-image">
+                    <div class="style-card-content">
+                        <h3>3-7D Volume Set</h3>
+                        <p>A fuller, denser lash line. Ideal for achieving a more dramatic look, also perfect for thin or sparse natural lashes, as the Volume fans provide coverage.</p>
+                        <ul class="key-features">
+                            <li>**Effect:** Dramatic, dense, Volume</li>
+                            <li>**Number of Lashes:** 3-7 Volume fans per natural lash</li>
+                            <li>**Recommended for:** Clients experienced with Volume sets, or those wanting a dense, noticeable lash line.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="style-card">
+                    <img src="images/Lash Set types_4.png" alt="8-10D Mega Volume Set" class="style-card-image">
+                    <div class="style-card-content">
+                        <h3>8-10D Mega Volume Set</h3>
+                        <p>The most intense and dense effect, offering maximum drama and fullness. Fans made from extremely thin lashes guarantee a weightless and long-lasting wear.</p>
+                        <ul class="key-features">
+                            <li>**Effect:** Extreme, Ultra Volume, most intense density</li>
+                            <li>**Number of Lashes:** 8-10 (or more) Volume fans per natural lash</li>
+                            <li>**Recommended for:** Fans of extreme makeup, performers, or those requiring maximum volume.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#pricing-en" class="cta-button" data-hu="Árlista megtekintése" data-en="View Pricing">View Pricing</a>
+        </div>
+    </section>
+
+    <section id="pricing-en" class="main-content en pink-background-style">
+        <div class="section-inner-content">
+            <h2>Pricing 2025</h2>
+            <img src="images/arlistas.png" alt="Detailed Pricing photo" class="pricing-image">
+            
+            <div class="service-list">
+                <div class="service-item">
+                    <div class="service-item-title"><h3>2D Set</h3><p>New Set</p></div>
+                    <div class="price">21.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>2D Set Refill</h3><p>Refill (up to 28 days)</p></div>
+                    <div class="price">18.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>3-4D Set</h3><p>New Set</p></div>
+                    <div class="price">24.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>3-4D Set Refill</h3><p>Refill (up to 28 days)</p></div>
+                    <div class="price">19.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>5-7D Volume Set</h3><p>New Set</p></div>
+                    <div class="price">29.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>5-7D Volume Refill</h3><p>Refill (up to 28 days)</p></div>
+                    <div class="price">24.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>8-10D Mega Volume Set</h3><p>New Set</p></div>
+                    <div class="price">31.000 Ft</div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-title"><h3>8-10D Mega Volume Refill</h3><p>Refill (up to 28 days)</p></div>
+                    <div class="price">26.000 Ft</div>
+                </div>
+                 <div class="service-item" style="width: 45%;">
+                    <div class="service-item-title"><h3>Lash Shampoo Set</h3></div>
+                    <div class="price">4.000 Ft</div>
+                </div>
+                <div class="service-item" style="width: 45%;">
+                    <div class="service-item-title"><h3>Lash Shampoo Refill</h3></div>
+                    <div class="price">2.000 Ft</div>
+                </div>
+                <div class="service-item" style="width: 45%;">
+                    <div class="service-item-title"><h3>Lash Removal</h3></div>
+                    <div class="price">3.000 - 5.000 Ft</div>
+                </div>
+                <div class="service-item" style="width: 45%;">
+                    <div class="service-item-title"><h3>Makeup Removal</h3></div>
+                    <div class="price">2.000 Ft</div>
+                </div>
+            </div>
+            <p class="note">Please note that refill prices are only valid for refills within **28 days**.</p>
+        </div>
+    </section>
+    
+    <section id="gallery-en" class="main-content en">
+        <div class="section-inner-content">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <img src="images/527473906_18518464957056721_8327008335721350372_n.jpg" alt="Lash photo 1" class="gallery-item">
+                <img src="images/527600572_18518463913056721_5043533836132707011_n.jpg" alt="Lash photo 2" class="gallery-item">
+                <img src="images/527835898_18518465845056721_641603139710153374_n.jpg" alt="Lash photo 3" class="gallery-item">
+                <img src="images/527868061_18518466280056721_1096875789101664866_n.jpg" alt="Lash photo 4" class="gallery-item">
+                <img src="images/527868061_18518466280056721_1096875789101664866_n (1).jpg" alt="Lash photo 5" class="gallery-item">
+                <img src="images/528030995_18518465077056721_9150396120226703631_n.jpg" alt="Lash photo 6" class="gallery-item">
+                <img src="images/528047123_18518463724056721_3335402031074950460_n.jpg" alt="Lash photo 7" class="gallery-item">
+                <img src="images/528563236_18518465290056721_5482978350583834318_n.jpg" alt="Lash photo 8" class="gallery-item">
+                <img src="images/561329088_18530708695056721_8234146038082791537_n.jpg" alt="Lash photo 9" class="gallery-item">
+                <img src="images/565551194_18533478448056721_6251122096457703170_n.jpg" alt="Lash photo 10" class="gallery-item">
+                <img src="images/565645457_18533480596056721_7152556860313179970_n.jpg" alt="Lash photo 11" class="gallery-item">
+                <img src="images/565965438_18533491621056721_8673664543933808571_n.jpg" alt="Lash photo 12" class="gallery-item">
+                <img src="images/566349773_18533491450056721_6061933695575078252_n.jpg" alt="Lash photo 13" class="gallery-item">
+                <img src="images/566783389_18533477920056721_9056916214488788190_n.jpg" alt="Lash photo 14" class="gallery-item">
+                <img src="images/571200028_18535990555056721_3081417101746111157_n.jpg" alt="Lash photo 15" class="gallery-item">
+                <img src="images/572653556_18536206900056721_936525573862250164_n.jpg" alt="Lash photo 16" class="gallery-item">
+                <img src="images/573123772_18535954561056721_2038097699687542587_n.jpg" alt="Lash photo 17" class="gallery-item">
+                <img src="images/573327522_18535953133056721_4304600888832919086_n.jpg" alt="Lash photo 18" class="gallery-item">
+                <img src="images/573631823_18536206312056721_2692097198072567992_n.jpg" alt="Lash photo 19" class="gallery-item">
+            </div>
+            <p style="margin-top: 50px;">Follow us on Instagram for more photos!</p>
+            <a href="https://www.instagram.com/selenyi_renata_lashandbeauty/" target="_blank" class="cta-button" data-hu="Instagram oldal" data-en="View Instagram">View Instagram</a>
+        </div>
+    </section>
+
+    <section id="aftercare-en" class="main-content en">
+        <div class="section-inner-content">
+            <h2>Lash Aftercare Guide</h2>
+            <p style="font-size: 1.1em; margin-bottom: 40px;">Follow these steps to ensure perfect retention and hygiene.</p>
+            
+            <ul class="aftercare-list">
+                <li>
+                    <h3>The 48-Hour Rule</h3>
+                    <p>For **48 hours** after your lash application, avoid contact with water, steam, saunas, or high humidity. This allows the adhesive to fully cure and solidify.</p>
+                </li>
+                <li>
+                    <h3>Daily Cleansing and Hygiene</h3>
+                    <p>**It is essential** to clean your lashes daily or every other day with a specialized lash shampoo (which is available for purchase from us). Clean lashes are not only hygienic, but the adhesive also adheres better to a clean surface. Dirt, dust, and oil weaken the glue bond.</p>
+                </li>
+                <li>
+                    <h3>Oil-Free Products Only</h3>
+                    <p>Avoid oil-based makeup removers, face creams, and serums around the eye area. Oil dissolves the lash adhesive, causing premature shedding of the extensions.</p>
+                </li>
+                <li>
+                    <h3>Avoid Rubbing and Pulling</h3>
+                    <p>Do not rub your eyes or pull on your lashes. If you feel itching, gently smooth the eyelid. Always let a professional remove your lash sets!</p>
+                </li>
+                <li>
+                    <h3>Brushing</h3>
+                    <p>Brush your lashes daily, either while they are still damp after cleansing or when dry, using the provided spoolie brush to maintain the set's shape and alignment.</p>
+                </li>
+                <li>
+                    <h3>Mascara and Curlers</h3>
+                    <p>DO NOT use mascara on your lash extensions, especially not waterproof formulas. If you must use mascara, apply it only to the tips, and ensure it is an oil-free product specifically designed for lash extensions.</p>
+                </li>
+            </ul>
+            
+            <div class="disclaimer">
+                <h3>Important Reminder</h3>
+                <p>Lashes typically require a refill every 2-3 weeks to maintain their fullness and appearance.</p>
+            </div>
+            
+            <a href="mailto:selenyir@gmail.com" class="cta-button" data-hu="Időpontfoglalás" data-en="Book Appointment">Book Appointment</a>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer-block">
+        <div class="hu">
+            <h3 style="margin-bottom: 20px;">Kapcsolat</h3>
+            <p><strong>Cím:</strong> 1188 Budapest, Saláta utca 12/B (Bejelentkezés szükséges)</p>
+            <p><strong>Telefon:</strong> <a href="tel:+36309826174">+36 30 982 6174</a></p>
+            <p><strong>Email:</strong> <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
+        </div>
+        
+        <div class="en">
+            <h3 style="margin-bottom: 20px;">Contact</h3>
+            <p><strong>Address:</strong> 1188 Budapest, Saláta utca 12/B (By appointment only)</p>
+            <p><strong>Phone:</strong> <a href="tel:+36309826174">+36 30 982 6174</a></p>
+            <p><strong>Email:</strong> <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.facebook.com/renilashes3D" target="_blank">Fb</a> 
+            <a href="https://www.instagram.com/selenyi_renata_lashandbeauty/" target="_blank">Insta</a>
+        </div>
+        
+        <p style="font-size: 0.8em; margin-top: 20px;">© 2024 Lash & Beauty Selényi Renáta. Minden jog fenntartva. | All rights reserved.</p>
+    </footer>
+
+    
+<script>
+    let carouselInterval;
+    let currentLang = 'hu'; // Alapértelmezett nyelv beállítása
+
+    // ==================== NYELV VÁLTÁS LOGIKA (FRISSÍTVE) ====================
+    
+    // Menüpontok és CTA gombok feliratai
+    const translations = {
+        'nav': {
+            'home': {'hu': 'Kezdőlap', 'en': 'Home'},
+            'lashsets': {'hu': 'Szett Stílusok', 'en': 'Lash Sets'}, // Hozzáadva
+            'pricing': {'hu': 'Árlista', 'en': 'Pricing'},
+            'gallery': {'hu': 'Galéria', 'en': 'Gallery'},
+            'aftercare': {'hu': 'Ápolás', 'en': 'Aftercare'},
+            'policy': {'hu': 'Házirend & GYIK', 'en': 'Policy & FAQ'}
+        },
+        'cta': {
+            'header': {'hu': 'Foglalás', 'en': 'Book Now'},
+            'aftercare': {'hu': 'Időpontfoglalás', 'en': 'Book Appointment'},
+            'training': {'hu': 'Jelentkezési feltételek', 'en': 'Application Requirements'},
+            'instagram': {'hu': 'Instagram oldal', 'en': 'View Instagram'},
+            'lashsets_pricing': {'hu': 'Árlista megtekintése', 'en': 'View Pricing'} // Új
+        }
+    };
+    
+    /**
+     * Váltja az aktuális nyelvet a megadott kódra és frissíti a menüpontokat.
+     * @param {string} lang - A beállítandó nyelv kódja ('hu' vagy 'en').
+     */
+    function switchLang(lang) {
+        currentLang = lang;
+        
+        // 1. Menü és CTA szövegek frissítése
+        updateMenuText(lang);
+        
+        // 2. Hash frissítése: hozzáadja a nyelvet az URL-hez, ha szükséges
+        const hash = window.location.hash.substring(1) || 'home';
+        let basePage = hash;
+        
+        // Eltávolítja a korábbi nyelvi jelölést a hash-ből
+        if (basePage.endsWith('-hu') || basePage.endsWith('-en')) {
+             basePage = basePage.substring(0, basePage.lastIndexOf('-'));
+        }
+        
+        // Új hash beállítása, ami aktiválja a routeChangeHandler-t
+        window.location.hash = `${basePage}-${currentLang}`;
+        
+        // 3. Nyelvi gombok állapotának frissítése
+        updateLangButtons();
+        
+        // 4. Tartalom frissítése (ha a hash nem változott, de a nyelv igen)
+        routeChangeHandler(); 
+    }
+    
+    /**
+     * Frissíti a menüpontok és a CTA gombok szövegét.
+     * @param {string} lang - A megjelenítendő nyelv kódja ('hu' vagy 'en').
+     */
+    function updateMenuText(lang) {
+        // Navigációs linkek
+        document.querySelectorAll('nav a').forEach(link => {
+            const targetPage = link.getAttribute('data-target');
+            if (translations.nav[targetPage]) {
+                link.textContent = translations.nav[targetPage][lang];
+            }
+        });
+        
+        // CTA gombok (Fejléc)
+        const headerCta = document.querySelector('.header-cta .cta-button');
+        if (headerCta) {
+            headerCta.textContent = translations.cta.header[lang];
+        }
+        
+        // CTA gombok (Ápolás, Edzés, Insta, Szett Stílusok CTA)
+        document.querySelectorAll('.cta-button').forEach(btn => {
+            const dataTarget = btn.getAttribute('data-hu'); // Cél azonosító a menüből/translations-ből
+            let textToSet = '';
+            
+            // Keresés a translations.cta-ban
+            for (const key in translations.cta) {
+                 if (translations.cta[key]['hu'] === dataTarget) {
+                    textToSet = translations.cta[key][lang];
+                    break;
+                 }
+            }
+            
+            if (textToSet) {
+                btn.textContent = textToSet;
+            } else {
+                // Tartalék a nem definiált gombokra (pl. ha van data-hu és data-en attribútum)
+                const dataHu = btn.getAttribute('data-hu');
+                const dataEn = btn.getAttribute('data-en');
+                if (dataHu && dataEn) {
+                    btn.textContent = (lang === 'hu') ? dataHu : dataEn;
+                }
+            }
+
+            // Frissíti a hash-re mutató CTA linkek nyelvi részét is (pl. #pricing-en)
+            const href = btn.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const baseHash = href.substring(1).split('-')[0]; // pl. pricing
+                btn.setAttribute('href', `#${baseHash}-${lang}`);
+            }
+        });
+    }
+
+    /**
+     * Frissíti a nyelvi gombok aktív állapotát.
+     */
+    function updateLangButtons() {
+        document.querySelectorAll('.lang-button').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-lang') === currentLang) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+
+    // ==================== ROUTING (TARTALOM VÁLTÁS) ====================
+
+    /**
+     * Megmutatja az aktuális oldalt.
+     * @param {string} page - A szekció ID-jének az alapja ('home', 'lashsets', 'pricing', 'gallery', 'aftercare').
+     * @param {string} lang - A megjelenítendő nyelv kódja ('hu' vagy 'en').
+     */
+    function showPage(page, lang) {
+        // Minden szekció elrejtése
+        document.querySelectorAll('.main-content').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Az aktív szekció ID-je (pl. 'home-hu')
+        const activeSectionId = `${page}-${lang}`;
+        const activeSection = document.getElementById(activeSectionId);
+        
+        // Képsorozat eltávolítása, ha aktív volt
+        if (carouselInterval) {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+        }
+
+        if (activeSection) {
+            // Aktív szekció megjelenítése
+            activeSection.classList.add('active');
+
+            // Megfelelő navigációs menü kiemelésének frissítése
+            updateNavigation(page);
+            
+            // Oldal cím frissítése
+            const pageTitles = {
+                'hu': { 'home': 'KEZDŐLAP', 'lashsets': 'SZETT STÍLUSOK', 'pricing': 'ÁRLISTA', 'gallery': 'GALÉRIA', 'aftercare': 'ÁPOLÁS' },
+                'en': { 'home': 'HOME', 'lashsets': 'LASH SETS', 'pricing': 'PRICING', 'gallery': 'GALLERY', 'aftercare': 'AFTERCARE' }
+            };
+
+            const pageTitle = pageTitles[lang][page] || 'HOME';
+
+            document.title = `Lash & Beauty Selényi Renáta - ${pageTitle}`;
+            
+            // Lábjegyzet nyelvének frissítése
+            document.querySelectorAll('footer > div').forEach(footerContent => {
+                footerContent.style.display = 'none';
+                if (footerContent.classList.contains(lang)) {
+                    footerContent.style.display = 'block';
+                }
+            });
+            
+            // Szín frissítése (Csak az árlista szekció rózsaszín)
+            document.body.classList.remove('pink-background-style');
+            document.body.style.backgroundColor = 'var(--color-black)';
+            document.body.style.color = 'var(--color-white)';
+            
+            if (activeSection.classList.contains('pink-background-style')) {
+                document.body.classList.add('pink-background-style');
+            } 
+            
+            document.querySelector('header').style.backgroundColor = 'var(--color-black)';
+        }
+        
+        // Fényképsorozat elindítása (csak ha a home oldalon vagyunk)
+        if (page === 'home') {
+            startCarousel(activeSectionId);
+        }
+    }
+    
+    /**
+     * Frissíti a navigációs linkek aktív állapotát.
+     * @param {string} activePage - Az aktuálisan aktív oldal alapja.
+     */
+    function updateNavigation(activePage) {
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const targetPage = link.getAttribute('data-target');
+            
+            // Hash alapú navigáció aktív link kiemelése
+            if (targetPage === activePage) {
+                link.classList.add('active');
+            } 
+            // Külső linkek (policy.html) linkjeinek korrigálása
+            else if (link.getAttribute('href').endsWith('.html')) {
+                // A külső linkeknek csak a data-target-je kell, hogy megegyezzen a külső fájl nevével (pl. policy)
+            }
+        });
+    }
+
+    /**
+     * Kezeli a hash változást az URL-ben. (Menüpontokra kattintva)
+     */
+    function routeChangeHandler() {
+        const hash = window.location.hash.substring(1); // Eltávolítja a # jelet
+        let basePage = hash || 'home'; 
+        let lang = currentLang;
+
+        // Kinyeri a nyelvet a hash-ből
+        if (basePage.endsWith('-hu')) {
+            lang = 'hu';
+            basePage = basePage.substring(0, basePage.lastIndexOf('-'));
+        } else if (basePage.endsWith('-en')) {
+            lang = 'en';
+            basePage = basePage.substring(0, basePage.lastIndexOf('-'));
+        }
+        
+        currentLang = lang; // Frissíti az aktuális nyelvet a globális változóban
+        updateLangButtons(); // Gombok frissítése
+        updateMenuText(currentLang); // Menüpontok szövegének frissítése
+        showPage(basePage, currentLang); 
+        
+        // Hash frissítése a tiszta oldalnévvel és a nyelvvel (ha nem volt megadva)
+        if (window.location.hash !== `#${basePage}-${currentLang}`) {
+             window.location.hash = `${basePage}-${currentLang}`;
+        }
+    }
+    
+    // ==================== EGYÉB JAVASCRIPT LOGIKA ====================
+
+    /**
+     * Elindítja a képek váltogatását a hero szekcióban.
+     * @param {string} sectionId - A szekció ID-je (pl. 'home-hu').
+     */
+    function startCarousel(sectionId) {
+        const activeSection = document.getElementById(sectionId);
+        if (!activeSection) return;
+        
+        const carouselWrapper = activeSection.querySelector('.image-carousel-wrapper');
+        if (!carouselWrapper) return;
+        
+        const carouselItems = carouselWrapper.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+
+        function showNextImage() {
+            // Először meg kell győződni, hogy a szekció még látható
+            if (!activeSection.classList.contains('active')) {
+                clearInterval(carouselInterval);
+                return;
+            }
+            
+            carouselItems[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            carouselItems[currentIndex].classList.add('active');
+        }
+
+        // Visszaállítja az első képre, amikor elindul
+        if (carouselItems.length > 0) {
+            carouselItems.forEach((item, index) => item.classList.remove('active'));
+            carouselItems[0].classList.add('active');
+            currentIndex = 0;
+        }
+
+        // Ha több mint egy kép van, elindítja a váltást
+        if (carouselItems.length > 1) {
+             carouselInterval = setInterval(showNextImage, 5000); 
+        }
+    }
+
+
+    // ==================== ESEMÉNY FIGYELŐK (KEZDETI BETÖLTÉS) ====================
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Nyelvi gombok eseménykezelője
+        document.querySelectorAll('.lang-button').forEach(button => {
+            button.addEventListener('click', function() {
+                switchLang(this.getAttribute('data-lang'));
+            });
+        });
+        
+        // Kezdeti nyelv megállapítása
+        let initialLang = 'hu';
+        if (window.location.hash.includes('-en')) {
+            initialLang = 'en';
+        } else if (window.location.hash.includes('-hu')) {
+            initialLang = 'hu';
+        } else if (navigator.language && navigator.language.startsWith('en')) {
+            initialLang = 'en';
+        }
+        
+        currentLang = initialLang;
+        
+        // Kezdeti hash beállítása
+        let basePage = window.location.hash.substring(1).split('-')[0] || 'home';
+        window.location.hash = `${basePage}-${currentLang}`;
+
+        // Oldal elindítása a hashchange handler segítségével
+        routeChangeHandler(); 
+
+    });
+
+    // Hashchange eseményre (pl. menüpontra kattintás)
+    window.addEventListener('hashchange', routeChangeHandler);
+</script>
+
+</body> 
+</html>
