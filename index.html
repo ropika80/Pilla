@@ -58,7 +58,7 @@
             background-color: var(--color-black); 
             color: var(--color-white);
             min-height: 0; 
-            display: none; /* Alapértelzésben MINDEN elrejtve! */
+            display: none; /* Alapértelmezésben MINDEN elrejtve! */
         }
         
         /* Aktív szekció felülírja a display: none-t */
@@ -84,12 +84,32 @@
             background-color: var(--color-black);
             color: var(--color-gold);
         }
+        
+        /* ==================== BAL ALSÓ SAROK FIX LOGÓ (ÚJ, MÓDOSÍTVA) ==================== */
+        .fixed-bottom-logo {
+            position: fixed;
+            bottom: 10px; /* Alulról 10px távolság (~1cm) */
+            left: 10px; /* Balról 10px távolság (~1cm) */
+            z-index: 1050; /* Legyen felül a tartalom felett */
+            opacity: 0.8; 
+            transition: opacity 0.3s;
+        }
+
+        .fixed-bottom-logo img {
+            height: 120px; /* DUPLÁJÁRA NÖVELVE 60px-ről */
+            width: auto;
+        }
+
+        .fixed-bottom-logo:hover {
+            opacity: 1.0;
+        }
 
         /* ==================== FEJLÉC ÉS NAVIGÁCIÓ ==================== */
         header {
             background-color: var(--color-black);
             color: var(--color-white);
-            padding: 15px 2%; 
+            /* MÓDOSÍTVA: Logó pozíciója 10px-re (bal sarok) */
+            padding: 15px 10px; 
             min-height: 80px; 
             display: flex;
             justify-content: space-between;
@@ -119,7 +139,7 @@
             border-color: var(--color-gold); 
         }
         
-        nav { display: flex; align-items: center; flex-grow: 1; justify-content: center; }
+        nav { display: flex; align-items: center; flex-grow: 1; justify-content: center; } /* Kapcsolat középen van a fejlécben */
 
         /* Fontos: minden menüpontnak kell data-hu és data-en attribútum a JS-hez! */
         nav a { 
@@ -315,26 +335,166 @@
 
 
         /* ==================== LÁBLÉC ==================== */
-        footer { background-color: var(--color-black); color: var(--color-white); padding: 40px 5%; }
+        footer { 
+            background-color: var(--color-black); 
+            color: var(--color-white); 
+            padding: 40px 5%; 
+            /* MÓDOSÍTVA: Középre igazítás */
+            text-align: center;
+        }
         footer a { color: var(--color-gold); }
+
+        
+/* ==================== FIX JOBB ALSÓ SAROKBAN LÉVŐ "KÖVESS" / "FOLLOW ME" BOX ==================== */
+.follow-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--color-gold);
+    border-radius: 10px;
+    padding: 10px 15px;
+    text-align: center;
+    z-index: 2000;
+}
+.follow-box h4 {
+    color: var(--color-gold);
+    font-family: var(--font-primary);
+    margin: 0 0 8px 0;
+    font-size: 1em;
+}
+.follow-box .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.follow-box .social-icons img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid var(--color-gold);
+    transition: transform 0.3s;
+}
+.follow-box .social-icons img:hover {
+    transform: scale(1.1);
+}
+
 
         /* Reszponzivitás */
         @media (max-width: 992px) { 
-            header { flex-direction: column; align-items: flex-start; padding: 15px 5%; min-height: auto; }
-            .logo-img { margin-bottom: 10px; }
-            nav { flex-wrap: wrap; justify-content: flex-start; margin-top: 10px; width: 100%; }
-            nav a { margin: 5px 10px 5px 0; }
-            .header-cta { margin-top: 15px; margin-left: 0; width: 100%; text-align: center; }
+            /* 1. Header: Két sorba kényszerítjük a tartalmat flex-wrap segítségével. */
+            header { 
+                flex-direction: row; 
+                flex-wrap: wrap; /* Lehetővé teszi, hogy a nav a második sorba ugorjon */
+                justify-content: space-between; 
+                align-items: center; 
+                padding: 10px 10px; /* Kisebb padding */
+                min-height: auto; 
+                height: auto;
+            }
+            
+            /* A logó magassága csökken, és balra marad */
+            .logo { order: 1; }
+            .logo-img { 
+                height: 50px; /* Kisebb logó */
+                max-height: 50px;
+                margin-bottom: 0;
+            }
+            
+            /* 2. Nyelv és CTA gomb a jobb oldalon */
+            .language-switcher { 
+                margin: 0 0 0 10px; 
+                order: 3; 
+            }
+            
+            .header-cta { 
+                order: 4; 
+                margin: 0; 
+                width: auto; 
+                text-align: right; 
+                /* A gombot is a headerbe tesszük, de kompaktabbra */
+            }
+            
+            .header-cta .cta-button {
+                padding: 8px 15px; /* Kisebb gomb */
+                font-size: 0.8em;
+            }
+            
+            /* 3. A navigáció a második sorba kerül és vízszintesen görgethető lesz */
+            nav { 
+                order: 5; /* Fő navigáció a legaljára kerül, hogy a második sorban legyen */
+                flex-wrap: nowrap; /* Megakadályozza, hogy a menüpontok betörjenek */
+                overflow-x: auto; /* Engedélyezi a vízszintes görgetést */
+                -webkit-overflow-scrolling: touch;
+                justify-content: flex-start;
+                padding: 5px 10px;
+                width: 100%;
+                /* Hogy elválassza a navot a tartalomtól */
+                background-color: var(--color-light-gray); 
+                border-top: 1px solid var(--color-gold);
+                margin-top: 5px; 
+            }
+            
+            nav a { 
+                margin: 5px 10px; 
+                flex-shrink: 0; /* Megakadályozza az összenyomást */
+            }
+            
+            /* Egyéb mobil stílusok */
             .service-item { width: 90%; }
             .about-content { flex-direction: column; text-align: center; }
-            .language-switcher { margin-left: 0; margin-top: 10px; }
             .style-grid { grid-template-columns: 1fr; } /* Szett stílusok mobilon */
             .style-card-image { height: 200px; } /* Kisebb kép mobilon */
+            
+            /* Mobilon nagyobb fix logó */
+            .fixed-bottom-logo img {
+                height: 90px; /* Duplájára növelve 45px-ről */
+            }
+            .fixed-bottom-logo {
+                bottom: 5px;
+                left: 5px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <div class="follow-box hu">
+        <h4>Kövess</h4>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/renilashes3D" target="_blank" title="Facebook">
+                <img src="images/facebook.png" alt="Facebook ikon">
+            </a>
+            <a href="https://www.instagram.com/selenyi_renata_lashandbeauty/" target="_blank" title="Instagram">
+                <img src="images/insta.png" alt="Instagram ikon">
+            </a>
+            <a href="https://www.tiktok.com/@selenyilashes" target="_blank" title="TikTok">
+                <img src="images/tiktok.png" alt="TikTok ikon">
+            </a>
+        </div>
+    </div>
+
+    <div class="follow-box en" style="display:none;">
+        <h4>Follow me</h4>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/renilashes3D" target="_blank" title="Facebook">
+                <img src="images/facebook.png" alt="Facebook icon">
+            </a>
+            <a href="https://www.instagram.com/selenyi_renata_lashandbeauty/" target="_blank" title="Instagram">
+                <img src="images/insta.png" alt="Instagram icon">
+            </a>
+            <a href="https://www.tiktok.com/@selenyilashes" target="_blank" title="TikTok">
+                <img src="images/tiktok.png" alt="TikTok icon">
+            </a>
+        </div>
+    </div>
+
+
+    
+    <div class="fixed-bottom-logo">
+        <img src="logo.png" alt="Lash & Beauty Selényi Renáta logo" title="Lash & Beauty Logo">
+    </div>
+    
     <header>
         <div class="logo">
             <img src="logo.png" alt="Lash & Beauty Selényi Renáta logo" class="logo-img">
@@ -1144,6 +1304,26 @@
 
     // Hashchange eseményre (pl. menüpontra kattintás)
     window.addEventListener('hashchange', routeChangeHandler);
+
+// === Nyelvváltáskor a Kövess / Follow me box megjelenítésének kezelése ===
+function updateFollowBoxVisibility(lang) {
+    document.querySelectorAll('.follow-box').forEach(box => {
+        box.style.display = box.classList.contains(lang) ? 'block' : 'none';
+    });
+}
+
+// A meglévő switchLang függvény kiegészítése
+const originalSwitchLang = switchLang;
+switchLang = function(lang) {
+    originalSwitchLang(lang);
+    updateFollowBoxVisibility(lang);
+};
+
+// Induláskor beállítás
+document.addEventListener('DOMContentLoaded', function() {
+    updateFollowBoxVisibility(currentLang || 'hu');
+});
+
 </script>
 
 </body> 
