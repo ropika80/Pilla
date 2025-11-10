@@ -195,10 +195,19 @@
         .about-content { display: flex; align-items: center; justify-content: center; max-width: 1000px; margin: 0 auto; text-align: left; gap: 60px; }
         .about-image img { max-width: 250px; height: auto; border: 1px solid var(--color-gold); object-fit: cover; }
 
-        /* ==================== ÁR TÁBLÁZAT KÉP ÉS LISTA ==================== */
+        /* ==================== ÁR TÁBLÁZAT KÉP ÉS LISTA (JAVÍTVA) ==================== */
         .pricing-image { max-width: 600px; width: 100%; height: auto; margin: 0 auto 50px auto; border: 3px solid var(--color-gold); display: block; }
-        .service-list { display: flex; justify-content: center; flex-wrap: wrap; margin-top: 40px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+        .service-list { 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            margin-top: 40px; 
+            max-width: 1000px; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
         .service-item { 
+            /* PC nézet */
             width: 45%; 
             margin: 15px 2%; 
             padding: 20px 30px; 
@@ -210,10 +219,27 @@
             align-items: center;
             /* Szöveg és ár fekete legyen a rózsaszín háttéren! */
             color: var(--color-black);
+            min-height: 80px; /* Hogy szebb legyen a táblázat */
+        }
+        .service-item-title {
+            /* PC-n engedjük, hogy a szöveg nyúljon */
+            flex-grow: 1; 
+            /* Megakadályozza, hogy az ár teljesen összenyomja a címet */
+            min-width: 100px; 
         }
         .service-item h3 { color: var(--color-gold); margin: 0; letter-spacing: 1px; font-size: 1.3em; }
         .service-item p { margin: 5px 0 0 0; font-size: 0.9em; color: var(--color-dark-gray); }
-        .price { color: var(--color-black); font-size: 1.6em; font-weight: 700; white-space: nowrap; }
+        .price { 
+            color: var(--color-black); 
+            font-size: 1.6em; 
+            font-weight: 700; 
+            /* white-space: nowrap; ELTÁVOLÍTVA a mobilos kilógás elkerülése érdekében */
+            text-align: right;
+            margin-left: 20px; /* Távolság a szövegtől */
+            /* MÓDOSÍTVA: Megakadályozza, hogy az ár teljesen összenyomódjon (több sorba törhet, de szóköz nélkül) */
+            flex-shrink: 0;
+            min-width: 90px;
+        }
         .note { margin-top: 30px; font-style: italic; font-size: 0.9em; }
 
         /* ==================== GALÉRIA STÍLUSOK ==================== */
@@ -345,11 +371,12 @@
         footer a { color: var(--color-gold); }
 
         
-/* ==================== FIX JOBB ALSÓ SAROKBAN LÉVŐ "KÖVESS" / "FOLLOW ME" BOX ==================== */
+/* ==================== FIX JOBB ALSÓ SAROKBAN LÉVŐ "KÖVESS" / "FOLLOW ME" BOX (VISSZAÁLLÍTVA) ==================== */
 .follow-box {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 20px; /* Alulról 20px távolság */
+    right: 20px; /* Jobbról 20px távolság */
+    left: auto; /* Balra igazítás eltávolítva */
     background-color: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--color-gold);
     border-radius: 10px;
@@ -371,9 +398,13 @@
 .follow-box .social-icons img {
     width: 35px;
     height: 35px;
-    border-radius: 50%;
+    /* JAVÍTÁS: A border-radius: 50% eltávolítása a kép természetes arányának megőrzéséhez */
+    /* A kör keret helyett sima négyzetes keret marad */
+    /* border-radius: 50%; <--- EZ VOLT AZ OKA */
     border: 1px solid var(--color-gold);
     transition: transform 0.3s;
+    /* ÚJ: A kép arányos betöltése a 35x35px-es keretbe, hogy ne nyomódjon össze */
+    object-fit: contain; 
 }
 .follow-box .social-icons img:hover {
     transform: scale(1.1);
@@ -441,7 +472,16 @@
             }
             
             /* Egyéb mobil stílusok */
-            .service-item { width: 90%; }
+            /* === Árlista Javítása Mobilra === */
+            .service-item { 
+                /* MÓDOSÍTVA: Mobilnézetben egy oszlopba rendeződik */
+                width: 90%; 
+                margin: 10px auto; /* Középre igazítás */
+                padding: 15px 20px; /* Kisebb padding mobilon */
+                min-height: auto;
+            }
+            /* === END Árlista Javítása Mobilra === */
+            
             .about-content { flex-direction: column; text-align: center; }
             .style-grid { grid-template-columns: 1fr; } /* Szett stílusok mobilon */
             .style-card-image { height: 200px; } /* Kisebb kép mobilon */
@@ -453,6 +493,13 @@
             .fixed-bottom-logo {
                 bottom: 5px;
                 left: 5px;
+            }
+            
+            /* Mobilon a közösségi média doboz (VISSZAÁLLÍTVA JOBB ALULRA) */
+            .follow-box {
+                bottom: 5px; /* Alacsonyabbra, hogy ne zavarja a mobilnézetet */
+                right: 5px; /* Jobb alsó sarokhoz igazítva */
+                left: auto; /* Balra igazítás eltávolítva */
             }
         }
     </style>
@@ -831,7 +878,7 @@
                         <ul class="key-features">
                             <li>**Effect:** Extreme, Ultra Volume, most intense density</li>
                             <li>**Number of Lashes:** 8-10 (or more) Volume fans per natural lash</li>
-                            <li>**Recommended for:** Fans of extreme makeup, performers, or those requiring maximum volume.</li>
+                            <li>**Kinek ajánlott:** Extrém sminket kedvelőknek, fellépő művészeknek, vagy maximális dúsaságot igénylőknek.</li>
                         </ul>
                     </div>
                 </div>
@@ -958,7 +1005,7 @@
                 <li>
                     <h3>Mascara and Curlers</h3>
                     <p>DO NOT use mascara on your lash extensions, especially not waterproof formulas. If you must use mascara, apply it only to the tips, and ensure it is an oil-free product specifically designed for lash extensions.</p>
-                </li>
+                    </li>
             </ul>
             
             <div class="disclaimer">
@@ -1220,6 +1267,7 @@
         currentLang = lang; // Frissíti az aktuális nyelvet a globális változóban
         updateLangButtons(); // Gombok frissítése
         updateMenuText(currentLang); // Menüpontok szövegének frissítése
+        updateFollowBoxVisibility(currentLang); // Follow box frissítése
         showPage(basePage, currentLang); 
         
         // Hash frissítése a tiszta oldalnévvel és a nyelvvel (ha nem volt megadva)
@@ -1282,13 +1330,13 @@
         });
         
         // Kezdeti nyelv megállapítása
-        let initialLang = 'hu';
+        // MODOSÍTVA: KÖTELEZŐEN MAGYAR az alapértelmezett. Eltávolítottuk a böngésző nyelvét vizsgáló logikát.
+        let initialLang = 'hu'; 
+        
         if (window.location.hash.includes('-en')) {
             initialLang = 'en';
         } else if (window.location.hash.includes('-hu')) {
             initialLang = 'hu';
-        } else if (navigator.language && navigator.language.startsWith('en')) {
-            initialLang = 'en';
         }
         
         currentLang = initialLang;
@@ -1319,13 +1367,13 @@ switchLang = function(lang) {
     updateFollowBoxVisibility(lang);
 };
 
-// Induláskor beállítás
-document.addEventListener('DOMContentLoaded', function() {
-    updateFollowBoxVisibility(currentLang || 'hu');
-});
+// Induláskor beállítás (Ezt már lefuttatja a routeChangeHandler is, de jó, ha itt is van)
+// Mivel a routeChangeHandler már meghívja, itt nincs szükség rá, de a biztonság kedvéért bent hagyható.
+// document.addEventListener('DOMContentLoaded', function() {
+//     updateFollowBoxVisibility(currentLang || 'hu');
+// });
 
 </script>
 
 </body> 
 </html>
-
