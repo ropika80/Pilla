@@ -915,7 +915,7 @@
                 <img src="images/573327522_18535953133056721_4304600888832919086_n.jpg" alt="Szempilla fotó 17" class="gallery-item">
                 <img src="images/573631823_18536206312056721_2692097198072567992_n.jpg" alt="Szempilla fotó 18" class="gallery-item">
             </div>
-            </div>
+        </div>
     </section>
 
     <section id="gallery-en" class="main-content en" style="display:none;">
@@ -942,7 +942,7 @@
                 <img src="images/573327522_18535953133056721_4304600888832919086_n.jpg" alt="Lash photo 17" class="gallery-item">
                 <img src="images/573631823_18536206312056721_2692097198072567992_n.jpg" alt="Lash photo 18" class="gallery-item">
             </div>
-            </div>
+        </div>
     </section>
 
     <section id="aftercare-hu" class="main-content hu" style="display:none;">
@@ -1065,7 +1065,7 @@
                 'pricing': { 'hu': 'Árlista', 'en': 'Pricing' },
                 'gallery': { 'hu': 'Galéria', 'en': 'Gallery' },
                 'aftercare': { 'hu': 'Ápolás', 'en': 'Aftercare' },
-                'contact': { 'hu': 'Kapcsolat', 'en': 'Contact' }, // ÚJ: Kapcsolat
+                'contact': { 'hu': 'Kapcsolat', 'en': 'Contact' }, 
                 'policy': { 'hu': 'Házirend & GYIK', 'en': 'Policy & FAQ' }
             },
             cta: {
@@ -1104,7 +1104,7 @@
                 updateMenuText(currentLang);
                 updateFollowBoxVisibility(currentLang);
                 updateLangButtons();
-                updateFooterContent(currentLang); // FIX: Lábléc tartalmának frissítése
+                updateFooterContent(currentLang); 
             }
 
             // Minden szekció elrejtése
@@ -1133,7 +1133,7 @@
                 activeSection.classList.add('active');
                 activeSection.style.display = 'block';
                 activeSection.setAttribute('aria-hidden', 'false');
-                activeSection.scrollIntoView({ behavior: 'smooth' }); // Görgetés az új szekcióhoz
+                activeSection.scrollIntoView({ behavior: 'smooth' }); 
 
                 // Navigáció frissítése
                 updateNavigation(page);
@@ -1340,7 +1340,8 @@
                 switchLang(this.getAttribute('data-lang'));
             });
         });
-
+        
+        // FIX: A stabil, eredeti DOMContentLoaded logika visszaállítása
         document.addEventListener('DOMContentLoaded', () => {
             
             // Kezdeti nyelv megállapítása
@@ -1363,9 +1364,6 @@
             if (!window.location.hash.includes(`-${currentLang}`)) {
                 window.location.hash = `${basePage}-${currentLang}`;
             }
-            
-            // FIX 3: A menü és a CTA gombok szövegének azonnali frissítése a hash alapján beállított nyelvre.
-            updateMenuText(currentLang);
 
             // Oldal elindítása a hashchange handler segítségével
             routeChangeHandler(); 
