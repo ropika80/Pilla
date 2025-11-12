@@ -918,33 +918,6 @@
         </div>
     </section>
 
-    <section id="gallery-en" class="main-content en" style="display:none;">
-        <div class="section-inner-content">
-            <h2>Gallery of My Work</h2>
-            <p style="font-size: 1.1em; margin-bottom: 40px;">View photos of my latest lash sets.</p>
-            <div class="gallery-grid">
-                <img src="images/527868061_18518466280056721_1096875789101664866_n.jpg" alt="Lash photo 1" class="gallery-item">
-                <img src="images/565965438_18533491621056721_8673664543933808571_n.jpg" alt="Lash photo 2" class="gallery-item">
-                <img src="images/566349773_18533491450056721_6061933695575078252_n.jpg" alt="Lash photo 3" class="gallery-item">
-                <img src="images/566898779_18535212683056721_3660855365510617300_n.jpg" alt="Lash photo 4" class="gallery-item">
-                <img src="images/567284457_18535212450056721_2415161041160456184_n.jpg" alt="Lash photo 5" class="gallery-item">
-                <img src="images/567924467_18535212260056721_4319455322961556056_n.jpg" alt="Lash photo 6" class="gallery-item">
-                <img src="images/568115664_18535212001056721_8518939720491873105_n.jpg" alt="Lash photo 7" class="gallery-item">
-                <img src="images/568858284_18535740430056721_1276065653495864197_n.jpg" alt="Lash photo 8" class="gallery-item">
-                <img src="images/569032517_18535740660056721_4960309257697472149_n.jpg" alt="Lash photo 9" class="gallery-item">
-                <img src="images/569376664_18535739810056721_8462719213165279268_n.jpg" alt="Lash photo 10" class="gallery-item">
-                <img src="images/569527653_18535740310056721_1143890288282361139_n.jpg" alt="Lash photo 11" class="gallery-item">
-                <img src="images/569576435_18535740920056721_7646199859239864275_n.jpg" alt="Lash photo 12" class="gallery-item">
-                <img src="images/570072049_18535740134056721_5081912948740188769_n.jpg" alt="Lash photo 13" class="gallery-item">
-                <img src="images/572653556_18536206900056721_936525573862250164_n.jpg" alt="Lash photo 14" class="gallery-item">
-                <img src="images/573122971_18535954366056721_8512133200780447376_n.jpg" alt="Lash photo 15" class="gallery-item">
-                <img src="images/573123772_18535954561056721_2038097699687542587_n.jpg" alt="Lash photo 16" class="gallery-item">
-                <img src="images/573327522_18535953133056721_4304600888832919086_n.jpg" alt="Lash photo 17" class="gallery-item">
-                <img src="images/573631823_18536206312056721_2692097198072567992_n.jpg" alt="Lash photo 18" class="gallery-item">
-            </div>
-        </div>
-    </section>
-
     <section id="aftercare-hu" class="main-content hu" style="display:none;">
         <div class="section-inner-content">
             <h2>Szempilla Ápolási Útmutató</h2>
@@ -1085,6 +1058,8 @@
 
         /**
          * Fő routing logikát kezeli, hash változásra fut le.
+         * JAVÍTVA: Mindig frissíti a nyelvi elemeket az aktuális hash alapján, 
+         * így a nyelvváltó gomb működése garantált.
          */
         function routeChangeHandler() {
             // Hash kinyerése és feldolgozása
@@ -1095,18 +1070,18 @@
             if (!lang || (lang !== 'hu' && lang !== 'en')) {
                 lang = currentLang;
                 window.location.hash = `${page}-${lang}`;
+                // Ha hiba volt a hashben, a frissítéssel újraindul a handler.
                 return;
             }
 
-            // Nyelvi váltás logikája (ha a hashben más nyelv van)
-            if (lang !== currentLang) {
-                currentLang = lang;
-                updateMenuText(currentLang);
-                updateFollowBoxVisibility(currentLang);
-                updateLangButtons();
-                updateFooterContent(currentLang); 
-            }
-
+            // FONTOS JAVÍTÁS: Mindig frissítjük a nyelvi elemeket a hash-ben található nyelv alapján.
+            // Ez biztosítja a menü és az oldalfrissítés szinkronitását.
+            currentLang = lang;
+            updateMenuText(currentLang);
+            updateFollowBoxVisibility(currentLang);
+            updateLangButtons();
+            updateFooterContent(currentLang); 
+            
             // Minden szekció elrejtése
             document.querySelectorAll('section.main-content').forEach(section => {
                 section.classList.remove('active');
@@ -1152,9 +1127,6 @@
                     window.location.hash = `home-${lang}`;
                 }
             }
-            
-            // FIX: Biztosítja, hogy a lábléc mindig az aktuális nyelven jelenjen meg
-            updateFooterContent(lang);
         }
 
         /**
@@ -1195,7 +1167,7 @@
             if (targetElement && targetElement.getAttribute('href').startsWith('#') && basePage !== 'contact') {
                 window.location.hash = `${basePage}-${lang}`;
             } else if (basePage === 'contact') {
-                window.location.hash = `contact-${lang}`; // A kapcsolat marad contact
+                window.location.hash = `contact-${lang}`; 
             } else {
                 // Ha a hash home, de átváltottuk a nyelvet, akkor a home-ra állítjuk
                 if (basePage.split('-')[0] !== basePage) {
@@ -1205,11 +1177,11 @@
                 }
             }
 
-            // 3. Follow box nyelvének frissítése
-            updateFollowBoxVisibility(lang);
+            // Mivel a `routeChangeHandler` most már minden alkalommal frissíti a nyelvet
+            // és a menüszöveget, elegendő a hash változtatása (ami elindítja a `hashchange` eseményt).
+            // A `currentLang` globális változóval együtt beállítva ez biztosítja, hogy 
+            // a `routeChangeHandler` minden frissítést megtegyen.
 
-            // 4. Nyelvi gombok aktív állapotának frissítése
-            updateLangButtons();
         }
 
         /**
