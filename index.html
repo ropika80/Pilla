@@ -818,11 +818,11 @@
                     <div class="service-item-title"><h3>8-10D Mega Volume Töltés</h3><p>Töltés (max. 28 napig)</p></div>
                     <div class="price">26.000 Ft</div>
                 </div>
-                <div class="service-item" style="width: 45%;">
+                <div class="service-item">
                     <div class="service-item-title"><h3>Szempilla Sampon Szett</h3></div>
                     <div class="price">4.000 Ft</div>
                 </div>
-                <div class="service-item" style="width: 45%;">
+                <div class="service-item">
                     <div class="service-item-title"><h3>Eltávolítás</h3></div>
                     <div class="price">4.000 Ft</div>
                 </div>
@@ -877,11 +877,11 @@
                     <div class="service-item-title"><h3>8-10D Mega Volume Refill</h3><p>Refill (up to 28 days)</p></div>
                     <div class="price">26.000 Ft</div>
                 </div>
-                <div class="service-item" style="width: 45%;">
+                <div class="service-item">
                     <div class="service-item-title"><h3>Lash Shampoo Set</h3></div>
                     <div class="price">4.000 Ft</div>
                 </div>
-                <div class="service-item" style="width: 45%;">
+                <div class="service-item">
                     <div class="service-item-title"><h3>Removal</h3></div>
                     <div class="price">4.000 Ft</div>
                 </div>
@@ -915,9 +915,7 @@
                 <img src="images/573327522_18535953133056721_4304600888832919086_n.jpg" alt="Szempilla fotó 17" class="gallery-item">
                 <img src="images/573631823_18536206312056721_2692097198072567992_n.jpg" alt="Szempilla fotó 18" class="gallery-item">
             </div>
-            <p style="margin-top: 50px;">További fotókért kövesse Instagram oldalunkat!</p>
-            <a href="https://www.instagram.com/selenyi_renata_lashandbeauty/" target="_blank" class="cta-button" data-hu="Instagram oldal" data-en="View Instagram">Instagram oldal</a>
-        </div>
+            </div>
     </section>
 
     <section id="gallery-en" class="main-content en" style="display:none;">
@@ -944,9 +942,7 @@
                 <img src="images/573327522_18535953133056721_4304600888832919086_n.jpg" alt="Lash photo 17" class="gallery-item">
                 <img src="images/573631823_18536206312056721_2692097198072567992_n.jpg" alt="Lash photo 18" class="gallery-item">
             </div>
-            <p style="margin-top: 50px;">For more photos, follow our Instagram page!</p>
-            <a href="https://www.instagram.com/selenyi_renata_lashandbeauty/" target="_blank" class="cta-button" data-hu="Instagram oldal" data-en="View Instagram">View Instagram</a>
-        </div>
+            </div>
     </section>
 
     <section id="aftercare-hu" class="main-content hu" style="display:none;">
@@ -1014,11 +1010,11 @@
         <div class="footer-text-content">
             <p><strong>Lash & Beauty Selényi Renáta</strong></p>
             <div class="contact-info hu">
-                <p>Cím: 1188 Budapest, Saláta utca 12/B. | Időpontfoglalás: <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
+                <p>Cím: 1111 Budapest, Példa utca 1. | Időpontfoglalás: <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
                 <p>&copy; 2025 Lash & Beauty. Minden jog fenntartva. | <a href="policy.html">Házirend és adatkezelés</a></p>
             </div>
             <div class="contact-info en" style="display: none;">
-                <p>Address: 1188 Budapest, Saláta utca 12/B. | Booking: <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
+                <p>Address: 1111 Budapest, Példa utca 1. | Booking: <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
                 <p>&copy; 2025 Lash & Beauty. All rights reserved. | <a href="policy.html">Policy and Data Management</a></p>
             </div>
         </div>
@@ -1367,6 +1363,9 @@
             if (!window.location.hash.includes(`-${currentLang}`)) {
                 window.location.hash = `${basePage}-${currentLang}`;
             }
+            
+            // FIX 3: A menü és a CTA gombok szövegének azonnali frissítése a hash alapján beállított nyelvre.
+            updateMenuText(currentLang);
 
             // Oldal elindítása a hashchange handler segítségével
             routeChangeHandler(); 
