@@ -511,20 +511,25 @@
             
             /* ÚJ: FOOTER MOBIL BEÁLLÍTÁSOK */
             footer {
-                flex-direction: column; /* Egymás alá kerülnek */
+                /* JAVÍTVA: Eltávolítva a flex-direction: column; így a PC-s, vízszintes (row) elrendezést örökli. */
                 padding: 30px 10px;
+                flex-wrap: nowrap; /* Biztosítja, hogy egy sorban maradjon */
+                /* A fő footer-ben space-between van. A mobil nézetben kicsit jobban középre toljuk az elosztást: */
+                justify-content: space-around;
             }
             .fixed-bottom-logo {
-                margin-bottom: 15px;
+                /* JAVÍTVA: A felesleges függőleges margók eltávolítva a vízszintes elrendezéshez. */
+                margin: 0;
                 order: 1;
             }
             .footer-text-content {
                 order: 2;
-                padding: 0 10px;
-                margin-bottom: 15px;
+                padding: 0 5px; /* Kicsi vízszintes padding a szűk hely miatt */
+                margin: 0;
             }
             .static-social-links {
-                margin-top: 15px;
+                /* JAVÍTVA: A felesleges függőleges margók eltávolítva a vízszintes elrendezéshez. */
+                margin: 0;
                 order: 3;
             }
         }
