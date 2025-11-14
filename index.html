@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/48a3f2cb-f122-4cdf-9c6f-08fd908a47fa.js"></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +8,13 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght{700}&family=Lato:wght{300;400;700}&display=swap" rel="stylesheet">
     
+    <script type="text/javascript">
+    var _iub = _iub || [];
+    // A Cookie Policy ID már be van írva: 51861733
+    // SITE ID HELYE: CSERÉLJE KI A 000000-T A 6 SZÁMJEGYŰ SITE ID-RA!
+    _iub.csConfiguration = {"consentOnFiliation":true,"cookiePolicyId":51861733,"siteId":000000,"timeoutRemoval":{ "services": [ /* List of services to remove after timeout (e.g., GA) */ ] },"whitelabel":false,"lang":"hu", "banner":{ "content":"A weboldal sütiket használ a jobb felhasználói élmény érdekében. A folytatáshoz fogadja el azokat.", "fontFamily":"Lato", "acceptButtonDisplay":true, "customizeButtonDisplay":true, "position":"bottom", "theme":"dark" }};
+    </script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/51861733.js" charset="UTF-8" async></script>
     <script type="text/plain" data-iub-ccf-purposes="4" data-iub-ccf-init="1">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -16,9 +22,8 @@
       gtag('config', 'G-XXXXXXXXXX'); 
     </script>
     <script type="text/plain" data-iub-ccf-purposes="4" data-iub-ccf-init="1" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" async></script>
-    
     <style>
-        /* ==================== ALAP ÉS EGYÉB STÍLUSOK (KOMBINÁLT) ==================== */
+        /* [ ... A teljes CSS kód változatlan ... ] */
         :root {
             --color-black: #000000;
             --color-white: #FFFFFF;
@@ -70,7 +75,6 @@
             text-align: center;
             background-color: var(--color-black); 
             color: var(--color-white);
-            min-height: 0; 
             display: none; /* Alapértelmezésben MINDEN elrejtve! */
         }
         
@@ -100,10 +104,9 @@
         
         /* ==================== BAL ALSÓ SAROK STATIKUS LOGÓ ==================== */
         .fixed-bottom-logo {
-            opacity: 1.0; /* Nem kell áttetszőség, ha statikus */
+            opacity: 1.0; 
             transition: opacity 0.3s;
             pointer-events: auto; 
-            /* Fix: ne legyen marginja, hogy a footer flex-ben jól viselkedjen */
             margin: 0; 
         }
 
@@ -116,14 +119,10 @@
             opacity: 1.0;
         }
         
-        /* .bottom-static-elements CSS TÖRLÖLVE, MIVEL A LÁBLÉC KEZELI A POZÍCIÓT */
-
-
         /* ==================== FEJLÉC ÉS NAVIGÁCIÓ ==================== */
         header {
             background-color: var(--color-black);
             color: var(--color-white);
-            /* MÓDOSÍTVA: Logó pozíciója 10px-re (bal sarok) */
             padding: 15px 10px; 
             min-height: 80px; 
             display: flex;
@@ -154,7 +153,7 @@
             border-color: var(--color-gold); 
         }
         
-        nav { display: flex; align-items: center; flex-grow: 1; justify-content: center; } /* Kapcsolat középen van a fejlécben */
+        nav { display: flex; align-items: center; flex-grow: 1; justify-content: center; } 
 
         /* Fontos: minden menüpontnak kell data-hu és data-en attribútum a JS-hez! */
         nav a { 
@@ -248,7 +247,6 @@
             color: var(--color-black); 
             font-size: 1.6em; 
             font-weight: 700; 
-            /* white-space: nowrap; ELTÁVOLÍTVA a mobilos kilógás elkerülése érdekében */
             text-align: right;
             margin-left: 20px; /* Távolság a szövegtől */
             /* MÓDOSÍTVA: Megakadályozza, hogy az ár teljesen összenyomódjon (több sorba törhet, de szóköz nélkül) */
@@ -379,38 +377,29 @@
         footer { 
             background-color: var(--color-black); 
             color: var(--color-white); 
-            
-            /* MÓDOSÍTVA: Flexbox-ra alakítva a 3 elem egy sorba rendezéséhez */
-            padding: 30px 20px; /* Visszaállítva ésszerű paddingra */
+            padding: 30px 20px; 
             text-align: center; 
-            
-            /* ÚJ: Flexbox a 3 elem egy sorba rendezéséhez */
             display: flex;
-            justify-content: space-between; /* Elemek elosztása: Balra, Középre, Jobbra */
-            align-items: center; /* Függőleges középre igazítás */
+            justify-content: space-between; 
+            align-items: center; 
             width: 100%;
-            box-sizing: border-box; /* Padding ne növelje a teljes szélességet */
+            box-sizing: border-box; 
         }
         footer a { color: var(--color-gold); }
         
         /* ÚJ: A középre igazított szöveges tartalom beállításai */
         .footer-text-content {
-            /* Flex itemként a középső elemhez igazítva */
-            flex-grow: 1; /* Hogy a logó és a social box közötti teret elfoglalja */
-            text-align: center; /* A szöveg középre igazítása a saját területén belül */
-            padding: 0 20px; /* Kis térköz a logó/social box mellett */
-            max-width: none; /* Ne korlátozza a méretét */
-            margin: 0; /* Ne legyen marginja */
+            flex-grow: 1; 
+            text-align: center; 
+            padding: 0 20px; 
+            max-width: none; 
+            margin: 0; 
         }
         
         /* NYELVI ADATOK KEZELÉSE A LÁBLÉCBEN (JAVÍTVA) */
         footer .contact-info {
             display: none; 
         }
-        footer .contact-info.hu {
-            display: block; 
-        }
-
         
         /* ==================== STATIKUS JOBB ALSÓ SAROKBAN LÉVŐ "KÖVESS" / "FOLLOW ME" BOX ==================== */
         .follow-box {
@@ -421,6 +410,7 @@
             text-align: center;
             margin: 0; 
             pointer-events: auto; 
+            display: none; /* Alapból a JS kezeli a láthatóságot */
         }
         .follow-box h4 {
             color: var(--color-gold);
@@ -444,16 +434,21 @@
             transform: scale(1.1);
         }
 
-
         /* Reszponzivitás */
         @media (max-width: 992px) { 
+            
+            /* JAVÍTVA: Csökkentett padding mobilon */
+            .section-inner-content {
+                padding: 50px 5%; 
+            }
+            
             /* 1. Header: Két sorba kényszerítjük a tartalmat flex-wrap segítségével. */
             header { 
                 flex-direction: row; 
-                flex-wrap: wrap; /* Lehetővé teszi, hogy a nav a második sorba ugorjon */
+                flex-wrap: wrap; 
                 justify-content: space-between; 
                 align-items: center; 
-                padding: 10px 10px; /* Kisebb padding */
+                padding: 10px 10px; 
                 min-height: auto; 
                 height: auto;
             }
@@ -461,7 +456,7 @@
             /* A logó magassága csökken, és balra marad */
             .logo { order: 1; }
             .logo-img { 
-                height: 50px; /* Kisebb logó */
+                height: 50px; 
                 max-height: 50px;
                 margin-bottom: 0;
             }
@@ -477,24 +472,22 @@
                 margin: 0; 
                 width: auto; 
                 text-align: right; 
-                /* A gombot is a headerbe tesszük, de kompaktabbra */
             }
             
             .header-cta .cta-button {
-                padding: 8px 15px; /* Kisebb gomb */
+                padding: 8px 15px; 
                 font-size: 0.8em;
             }
             
             /* 3. A navigáció a második sorba kerül és vízszintesen görgethető lesz */
             nav { 
-                order: 5; /* Fő navigáció a legaljára kerül, hogy a második sorban legyen */
-                flex-wrap: nowrap; /* Megakadályozza, hogy a menüpontok betörjenek */
-                overflow-x: auto; /* Engedélyezi a vízszintes görgetést */
+                order: 5; 
+                flex-wrap: nowrap; 
+                overflow-x: auto; 
                 -webkit-overflow-scrolling: touch;
                 justify-content: flex-start;
                 padding: 5px 10px;
                 width: 100%;
-                /* Hogy elválassza a navot a tartalomtól */
                 background-color: var(--color-light-gray); 
                 border-top: 1px solid var(--color-gold);
                 margin-top: 5px; 
@@ -502,16 +495,15 @@
             
             nav a { 
                 margin: 5px 10px; 
-                flex-shrink: 0; /* Megakadályozza az összenyomást */
+                flex-shrink: 0; 
             }
             
-            /* Egyéb mobil stílusok */
             /* === Árlista Javítása Mobilra === */
             .service-item { 
                 /* MÓDOSÍTVA: Mobilnézetben egy oszlopba rendeződik */
                 width: 90%; 
-                margin: 10px auto; /* Középre igazítás */
-                padding: 15px 20px; /* Kisebb padding mobilon */
+                margin: 10px auto; 
+                padding: 15px 20px; 
                 min-height: auto;
             }
             /* === END Árlista Javítása Mobilra === */
@@ -522,9 +514,8 @@
             
             /* VISSZAÁLLÍTVA: FOOTER MOBIL BEÁLLÍTÁSOK (Egymás alá kerülnek) */
             footer {
-                flex-direction: column; /* Egymás alá kerülnek (VISSZAÁLLÍTVA) */
+                flex-direction: column; 
                 padding: 30px 10px;
-                /* A fő footer-ben lévő justify-content: space-between; felülírva */
                 justify-content: center; 
             }
             .fixed-bottom-logo {
@@ -542,12 +533,6 @@
             }
         }
     </style>
-    
-    <script type="text/javascript">
-    var _iub = _iub || [];
-    _iub.csConfiguration = {"consentOnFiliation":true,"cookiePolicyId":00000000,"siteId":000000,"timeoutRemoval":{ "services": [ /* List of services to remove after timeout (e.g., GA) */ ] },"whitelabel":false,"lang":"hu", "banner":{ "content":"A weboldal sütiket használ a jobb felhasználói élmény érdekében. A folytatáshoz fogadja el azokat.", "fontFamily":"Lato", "acceptButtonDisplay":true, "customizeButtonDisplay":true, "position":"bottom", "theme":"dark" }};
-    </script>
-    <script type="text/javascript" src="//cdn.iubenda.com/cs/00000000.js" charset="UTF-8" async></script>
     
 </head>
 <body>
@@ -1024,7 +1009,8 @@
         </div>
     </section>
 
-    <footer id="contact"> <div class="fixed-bottom-logo">
+    <footer id="contact"> 
+        <div class="fixed-bottom-logo">
             <img src="logo.png" alt="Lash & Beauty Selényi Renáta logo" title="Lash & Beauty Logo">
         </div>
         
@@ -1033,12 +1019,18 @@
             <div class="contact-info hu">
                 <p>Telefonszám: <a href="tel:+36309826174">+36309826174</a></p>
                 <p>E-mail cím: <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
-                <p>&copy; 2025 Lash & Beauty. Minden jog fenntartva. | <a href="https://www.iubenda.com/privacy-policy/00000000" class="iubenda-nostyle iubenda-embed" title="Adatkezelési tájékoztató" data-language="hu" data-site-id="000000" data-cookie-policy-id="00000000">Házirend és adatkezelés</a></p>
+                <p>&copy; 2025 Lash & Beauty. Minden jog fenntartva. | 
+                    <a href="https://www.iubenda.com/privacy-policy/51861733/cookie-policy" class="iubenda-nostyle iubenda-embed" title="Cookie Policy" data-language="hu" data-site-id="000000" data-cookie-policy-id="51861733">Cookie Policy</a>
+                    | <a href="https://www.iubenda.com/privacy-policy/51861733" class="iubenda-nostyle iubenda-embed" title="Adatkezelési tájékoztató" data-language="hu" data-site-id="000000" data-cookie-policy-id="51861733">Adatkezelési tájékoztató</a>
+                </p>
             </div>
-            <div class="contact-info en" style="display: none;">
+            <div class="contact-info en">
                 <p>Phone Number: <a href="tel:+36309826174">+36309826174</a></p>
                 <p>Email Address: <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
-                <p>&copy; 2025 Lash & Beauty. All rights reserved. | <a href="https://www.iubenda.com/privacy-policy/00000000" class="iubenda-nostyle iubenda-embed" title="Privacy Policy" data-language="en" data-site-id="000000" data-cookie-policy-id="00000000">Policy and Data Management</a></p>
+                <p>&copy; 2025 Lash & Beauty. All rights reserved. | 
+                    <a href="https://www.iubenda.com/privacy-policy/51861733/cookie-policy" class="iubenda-nostyle iubenda-embed" title="Cookie Policy" data-language="en" data-site-id="000000" data-cookie-policy-id="51861733">Cookie Policy</a>
+                    | <a href="https://www.iubenda.com/privacy-policy/51861733" class="iubenda-nostyle iubenda-embed" title="Privacy Policy" data-language="en" data-site-id="000000" data-cookie-policy-id="51861733">Privacy Policy</a>
+                </p>
             </div>
         </div>
         
@@ -1057,7 +1049,7 @@
                     </a>
                 </div>
             </div>
-            <div class="follow-box en" style="display:none;">
+            <div class="follow-box en">
                 <h4>Follow Me</h4>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/renilashes3D" target="_blank" title="Facebook">
@@ -1076,6 +1068,7 @@
     </footer>
     
     <script>
+        // [ ... A teljes JavaScript kód változatlan ... ]
         // ==================== KEZDETI BEÁLLÍTÁSOK ====================
         let currentLang = 'hu'; // Alapértelmezett nyelv
         let carouselInterval = null; // A képsorozat időzítője
@@ -1104,27 +1097,27 @@
 
         /**
          * Fő routing logikát kezeli, hash változásra fut le.
-         * JAVÍTVA: Mindig frissíti a nyelvi elemeket az aktuális hash alapján, 
-         * így a nyelvváltó gomb működése garantált.
          */
         function routeChangeHandler() {
             // Hash kinyerése és feldolgozása
             const hash = window.location.hash.substring(1) || 'home-hu';
             let [page, lang] = hash.split('-');
 
-            // Hibás hash kezelése
+            // Érvényes nyelv ellenőrzése
             if (!lang || (lang !== 'hu' && lang !== 'en')) {
                 lang = currentLang;
-                window.location.hash = `${page}-${lang}`;
-                // Ha hiba volt a hashben, a frissítéssel újraindul a handler.
-                return;
+                // Ha hiba volt a hashben, de a basePage OK, akkor visszaírjuk a nyelvet.
+                if (window.location.hash !== `#${page}-${lang}`) {
+                    window.location.hash = `${page}-${lang}`;
+                    return; 
+                }
             }
 
-            // FONTOS JAVÍTÁS: Mindig frissítjük a nyelvi elemeket a hash-ben található nyelv alapján.
-            // Ez biztosítja a menü és az oldalfrissítés szinkronitását.
+            // Globális nyelv beállítása
             currentLang = lang;
+            
+            // Nyelvi elemek frissítése
             updateMenuText(currentLang);
-            updateFollowBoxVisibility(currentLang);
             updateLangButtons();
             updateFooterContent(currentLang); 
             
@@ -1165,11 +1158,8 @@
                 }
 
             } else {
-                // Kezeljük a nem létező oldalt (pl. policy.html, amit külön fájl kezel)
-                if (page === 'policy') {
-                    // Házirend/policy esetén nem csinálunk semmit, nem Section, a böngésző a policy.html-re visz.
-                } else {
-                    // Ha nem létezik a szekció, visszaállunk a kezdőlapra
+                // Ha a szekció nem létezik (pl. valaki manuálisan írta be a hibás hasht), visszakerülünk a kezdőlapra
+                if (page !== 'policy') { // A policy.html-et nem bántjuk
                     window.location.hash = `home-${lang}`;
                 }
             }
@@ -1195,39 +1185,17 @@
         function switchLang(lang) {
             if (lang === currentLang) return; // Nincs szükség váltásra
 
-            // 1. Globális nyelv beállítása
-            currentLang = lang;
-
-            // 2. Hash frissítése a routinghoz (a routeChangeHandler végzi a többi logikát)
             let basePage = window.location.hash.substring(1).split('-')[0] || 'home';
             
-            // Eltávolítja a korábbi nyelvi jelölést a hash-ből
-            if (basePage.endsWith('-hu')) {
-                basePage = basePage.substring(0, basePage.lastIndexOf('-'));
-            } else if (basePage.endsWith('-en')) {
-                basePage = basePage.substring(0, basePage.lastIndexOf('-'));
-            }
+            // Beállítjuk az új hasht a nyelvi utótaggal, ami elindítja a routeChangeHandler-t
+            window.location.hash = `${basePage}-${lang}`;
             
-            // Ha a link nem külső (pl. policy.html), frissítjük a hacket a nyelvi utótaggal
-            const targetElement = document.querySelector(`[data-target="${basePage}"]`);
-            if (targetElement && targetElement.getAttribute('href').startsWith('#') && basePage !== 'contact') {
-                window.location.hash = `${basePage}-${lang}`;
-            } else if (basePage === 'contact') {
-                window.location.hash = `contact-${lang}`; 
-            } else {
-                // Ha a hash home, de átváltottuk a nyelvet, akkor a home-ra állítjuk
-                if (basePage.split('-')[0] !== basePage) {
-                    window.location.hash = `home-${lang}`;
-                } else {
-                    window.location.hash = `${basePage}-${lang}`;
-                }
+            // Ha a basePage a contact, a hash-t csak a contact-lang formátumra állítjuk.
+            if (basePage === 'contact') {
+                 window.location.hash = `contact-${lang}`;
             }
 
-            // Mivel a `routeChangeHandler` most már minden alkalommal frissíti a nyelvet
-            // és a menüszöveget, elegendő a hash változtatása (ami elindítja a `hashchange` eseményt).
-            // A `currentLang` globális változóval együtt beállítva ez biztosítja, hogy 
-            // a `routeChangeHandler` minden frissítést megtegyen.
-
+            // A routeChangeHandler végzi a többi szükséges frissítést.
         }
 
         /**
@@ -1248,16 +1216,13 @@
                 // Keresés a fordítási objektumban
                 if (dataHu === translations.cta.header['hu']) {
                     textToSet = translations.cta.header[lang];
-                } else if (dataHu === translations.cta.aftercare['hu']) {
+                } else if (dataHu === translations.cta.aftercare['hu'] || dataHu === translations.cta.pricing['hu']) {
                     textToSet = translations.cta.aftercare[lang];
                 } else if (dataHu === translations.cta.training['hu']) {
                     textToSet = translations.cta.training[lang];
                 } else if (dataHu === translations.cta.instagram['hu']) {
                     textToSet = translations.cta.instagram[lang];
-                } else if (dataHu === translations.cta.pricing['hu']) {
-                    textToSet = translations.cta.pricing[lang];
                 } else {
-                    // Ha nincs speciális fordítás (pl. a policy.html gombjánál)
                     textToSet = btn.getAttribute(`data-${lang}`);
                 }
                 
@@ -1280,10 +1245,11 @@
         }
 
         /**
-         * Frissíti a lábléc tartalmának (pl. elérhetőség) láthatóságát.
+         * Frissíti a lábléc tartalmának (pl. elérhetőség, social box) láthatóságát.
          * @param {string} lang - Az aktuális nyelv kódja ('hu' vagy 'en').
          */
         function updateFooterContent(lang) {
+            // Kontakt infók frissítése
             document.querySelectorAll('footer .contact-info').forEach(info => {
                 if (info.classList.contains(lang)) {
                     info.style.display = 'block';
@@ -1293,14 +1259,6 @@
             });
 
             // Social box frissítése
-            updateFollowBoxVisibility(lang);
-        }
-
-        /**
-         * Frissíti a jobb alsó sarokban lévő "Kövess" doboz láthatóságát.
-         * @param {string} lang - Az aktuális nyelv kódja ('hu' vagy 'en').
-         */
-        function updateFollowBoxVisibility(lang) {
             document.querySelectorAll('.follow-box').forEach(box => {
                 if (box.classList.contains(lang)) {
                     box.style.display = 'block';
@@ -1321,16 +1279,19 @@
 
             let currentIndex = 0;
 
+            // Keresi az aktív elemet, ha létezik, hogy onnan folytassa
+            const activeIndex = Array.from(items).findIndex(item => item.classList.contains('active'));
+            if (activeIndex !== -1) {
+                currentIndex = activeIndex;
+            } else {
+                 items[0].classList.add('active');
+            }
+
             const changeImage = () => {
                 items[currentIndex].classList.remove('active');
                 currentIndex = (currentIndex + 1) % items.length;
                 items[currentIndex].classList.add('active');
             };
-
-            // Első kép beállítása aktívnak induláskor (ha még nem volt beállítva)
-            if (!items[currentIndex].classList.contains('active')) {
-                 items[currentIndex].classList.add('active');
-            }
             
             // Intervallum elindítása (5 másodpercenként)
             carouselInterval = setInterval(changeImage, 5000); 
@@ -1359,55 +1320,30 @@
             });
         });
         
-        // FIX: A stabil, eredeti DOMContentLoaded logika visszaállítása
+        // FIX: Egyszerűsített DOMContentLoaded a stabil inicializáláshoz
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Kezdeti nyelv megállapítása
-            let initialLang = 'hu'; 
-            
-            if (window.location.hash.includes('-en')) {
-                initialLang = 'en';
-            } else if (window.location.hash.includes('-hu')) {
-                initialLang = 'hu';
-            } else {
-                // Ha nincs hash, a default 'home' oldalt és az 'hu' nyelvet állítjuk be
+            // 1. Kezdeti hash beállítása, ha nincs
+            if (!window.location.hash || window.location.hash === '#') {
                 window.location.hash = `home-hu`;
-            }
-            
-            currentLang = initialLang;
-            
-            // Kezdeti hash beállítása
-            let basePage = window.location.hash.substring(1).split('-')[0] || 'home';
-            // Meggyőződünk róla, hogy a hash tartalmazza a nyelvet is
-            if (!window.location.hash.includes(`-${currentLang}`)) {
-                window.location.hash = `${basePage}-${currentLang}`;
+                return; // A hashchange eseményt a hash beállítása indítja el
             }
 
-            // Oldal elindítása a hashchange handler segítségével
+            // 2. Hash formátum ellenőrzése és javítása (pl. #home -> #home-hu)
+            let hash = window.location.hash.substring(1);
+            let [page, lang] = hash.split('-');
+            
+            if (lang !== 'hu' && lang !== 'en') {
+                // Ha nincs nyelv, beállítjuk a defaultot és újraindul a routeChangeHandler
+                window.location.hash = `${page}-hu`;
+                return;
+            }
+
+            // 3. Ha a hash már létezik és helyes formátumú, közvetlenül meghívjuk a handlert
             routeChangeHandler(); 
-
         });
 
         
     </script>
-    <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent('onload', loader);}else{w.onload = loader;}})(window, document);</script>
-
-<!-- iubenda privacy and cookie policy (popup only) -->
-<a href="https://www.iubenda.com/privacy-policy/51861733/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe" title="Cookie Policy">Cookie Policy</a>
-<a href="https://www.iubenda.com/privacy-policy/51861733" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe" title="Privacy Policy">Privacy Policy</a>
-<script type="text/javascript">
-(function (w,d) {
-  var loader = function () {
-    var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0];
-    s.src="https://cdn.iubenda.com/iubenda.js";
-    tag.parentNode.insertBefore(s,tag);
-  };
-  if(w.addEventListener){w.addEventListener("load", loader, false);}
-  else if(w.attachEvent){w.attachEvent("onload", loader);}
-  else{w.onload = loader;}
-})(window, document);
-</script>
-<!-- end iubenda -->
-
-</body>
+    </body>
 </html>
