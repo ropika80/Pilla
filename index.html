@@ -611,9 +611,29 @@
     </style>
     
     <script type="text/javascript">
-    var _iub = _iub || [];
-    _iub.csConfiguration = {"consentOnFiliation":true,"cookiePolicyId":51861733,"siteId":000000,"timeoutRemoval":{ "services": [ /* List of services to remove after timeout (e.g., GA) */ ] },"whitelabel":false,"lang":"hu", "banner":{ "content":"A weboldal sütiket használ a jobb felhasználói élmény érdekében. A folytatáshoz fogadja el azokat.", "fontFamily":"Lato", "acceptButtonDisplay":true, "customizeButtonDisplay":true, "position":"bottom", "theme":"dark" }};
-    </script>
+var _iub = _iub || [];
+_iub.csConfiguration = {
+    "consentOnFiliation":true,
+    "cookiePolicyId":51861733,
+    "siteId":000000,
+    "whitelabel":false,
+    "lang":"hu",
+    "banner":{ 
+        "content":"A weboldal sütiket használ a jobb felhasználói élmény érdekében. A folytatáshoz fogadja el azokat.", 
+        "fontFamily":"Lato", 
+        "acceptButtonDisplay":true, 
+        "customizeButtonDisplay":true, 
+        "position":"float-bottom-right", // <-- JAVÍTVA: Ez biztosítja a lebegő sávot.
+        "theme":"dark" 
+    },
+    // JAVÍTVA: Ez hozza létre az elfogadás utáni diszkrét lebegő gombot a jobb alsó sarokban.
+    "floatingButton": {
+        "position": "bottom-right", 
+        "shape": "round",
+        "branding": false 
+    }
+};
+</script>
     <script type="text/javascript" src="//cdn.iubenda.com/cs/51861733.js" charset="UTF-8" async></script>
     
 </head>
