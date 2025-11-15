@@ -78,11 +78,6 @@
         section.active {
             display: block; 
         }
-        
-        /* KRITIKUS JAVÍTÁS: Ez biztosítja, hogy a magyar kezdőlap megjelenjen, felülírva MINDEN elrejtő szabályt. */
-        section#home-hu.active {
-            display: block !important; 
-        }
 
         .cta-button {
             background-color: var(--color-gold); 
@@ -616,30 +611,10 @@
     </style>
     
     <script type="text/javascript">
-var _iub = _iub || [];
-_iub.csConfiguration = {
-    "consentOnFiliation":true,
-    "cookiePolicyId":51861733,
-    "siteId":000000,
-    "whitelabel":false,
-    "lang":"hu",
-    "banner":{ 
-        "content":"A weboldal sütiket használ a jobb felhasználói élmény érdekében. A folytatáshoz fogadja el azokat.", 
-        "fontFamily":"Lato", 
-        "acceptButtonDisplay":true, 
-        "customizeButtonDisplay":true, 
-        "position":"float-bottom-right", // <-- Ez a kulcs a lebegő pozícióhoz!
-        "theme":"dark" 
-    },
-    // Ez hozza létre az elfogadás utáni diszkrét lebegő gombot a jobb alsó sarokban.
-    "floatingButton": {
-        "position": "bottom-right", 
-        "shape": "round",
-        "branding": false 
-    }
-};
-</script>
-    <script type="text/javascript" src="//cdn.iubenda.com/cs/51861733.js" charset="UTF-8" async></script>
+    var _iub = _iub || [];
+    _iub.csConfiguration = {"consentOnFiliation":true,"cookiePolicyId":00000000,"siteId":000000,"timeoutRemoval":{ "services": [ /* List of services to remove after timeout (e.g., GA) */ ] },"whitelabel":false,"lang":"hu", "banner":{ "content":"A weboldal sütiket használ a jobb felhasználói élmény érdekében. A folytatáshoz fogadja el azokat.", "fontFamily":"Lato", "acceptButtonDisplay":true, "customizeButtonDisplay":true, "position":"bottom", "theme":"dark" }};
+    </script>
+    <script type="text/javascript" src="//cdn.iubenda.com/cs/00000000.js" charset="UTF-8" async></script>
     
 </head>
 <body>
@@ -671,7 +646,7 @@ _iub.csConfiguration = {
     </header>
     
     
-    <section id="home-hu" class="main-content hu active" style="display: block;">
+    <section id="home-hu" class="main-content hu">
 
         <div class="image-carousel-wrapper">
             <div class="carousel-item active" style="background-image: url('images/527868061_18518466280056721_1096875789101664866_n.jpg');"></div>
@@ -802,7 +777,7 @@ _iub.csConfiguration = {
                         <li>2021. ICONIC Lash& Brow Championship: 2.helyezet 3-4D Volume Expert.</li>
                         <li>2021. ICONIC Lash& Brow Championship: 1. helyezet M/L ív Expert.</li>
                     </ul>
-
+                    
                     <h4>Tanulmányaim:</h4>
                     <ul>
                         <li>2016. július: Műszempilla építő alaptanfolyam.</li>
@@ -892,7 +867,7 @@ _iub.csConfiguration = {
                         <li>2021. ICONIC Lash & Brow Championship: 2nd place 3-4D Volume Expert.</li>
                         <li>2021. ICONIC Lash & Brow Championship: 1st place M/L curl Expert.</li>
                     </ul>
-
+                    
                     <h4>My Studies:</h4>
                     <ul>
                         <li>July 2016: Basic Eyelash Extension course.</li>
@@ -1298,12 +1273,12 @@ _iub.csConfiguration = {
                 <div class="contact-info hu">
                     <p>Telefonszám: <a href="tel:+36309826174">+36309826174</a></p>
                     <p>E-mail cím: <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
-                    <p>&copy; 2025 Lash & Beauty. Minden jog fenntartva. | <a href="https://www.iubenda.com/privacy-policy/51861733" class="iubenda-nostyle iubenda-embed" title="Adatkezelési tájékoztató" data-language="hu" data-site-id="000000" data-cookie-policy-id="51861733">Házirend és adatkezelés</a></p>
+                    <p>&copy; 2025 Lash & Beauty. Minden jog fenntartva. | <a href="https://www.iubenda.com/privacy-policy/00000000" class="iubenda-nostyle iubenda-embed" title="Adatkezelési tájékoztató" data-language="hu" data-site-id="000000" data-cookie-policy-id="00000000">Házirend és adatkezelés</a></p>
                 </div>
                 <div class="contact-info en" style="display: none;">
                     <p>Phone Number: <a href="tel:+36309826174">+36309826174</a></p>
                     <p>Email: <a href="mailto:selenyir@gmail.com">selenyir@gmail.com</a></p>
-                    <p>&copy; 2025 Lash & Beauty. All rights reserved. | <a href="https://www.iubenda.com/privacy-policy/51861733" class="iubenda-nostyle iubenda-embed" title="Privacy Policy" data-language="en" data-site-id="000000" data-cookie-policy-id="51861733">Policy & Data Handling</a></p>
+                    <p>&copy; 2025 Lash & Beauty. All rights reserved. | <a href="https://www.iubenda.com/privacy-policy/00000000" class="iubenda-nostyle iubenda-embed" title="Privacy Policy" data-language="en" data-site-id="000000" data-cookie-policy-id="00000000">Policy & Data Handling</a></p>
                 </div>
             </div>
             <div class="follow-box static-social-links hu">
@@ -1603,7 +1578,7 @@ _iub.csConfiguration = {
         }
 
     </script>
-    
+    <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent('onload', loader);}else{w.onload = loader;}})(window, document);</script>
 
 </body>
 </html>
