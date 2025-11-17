@@ -373,6 +373,141 @@
         }
 
 
+        /* ==================== OKTATÁS SZEKCIÓ STÍLUSOK (ÚJ ÉS MÓDOSÍTOTT) ==================== */
+        .oktatas-szekcio {
+            padding: 60px 5%;
+            background-color: var(--color-black);
+            color: var(--color-white);
+            border-top: 3px solid var(--color-gold); 
+            text-align: left;
+        }
+
+        .oktatas-szekcio .kontener {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .oktatas-szekcio h2 {
+            color: var(--color-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .oktatas-szekcio h3, .oktatas-szekcio h4 {
+            color: var(--color-white);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-transform: none;
+            font-family: var(--font-primary);
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--color-dark-gray);
+            padding-bottom: 5px;
+        }
+        .oktatas-szekcio h4 {
+             font-size: 1.2em;
+        }
+
+        .kiemeles {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--color-gold); 
+            text-align: center;
+            margin-bottom: 40px;
+            background-color: var(--color-light-gray);
+            padding: 15px;
+        }
+
+        .list-oktatas {
+            list-style-type: '👉 ';
+            padding-left: 20px;
+            margin-bottom: 30px;
+            columns: 2; /* PC-n két oszlop */
+        }
+        .list-oktatas li {
+            margin-bottom: 10px;
+        }
+
+        .felhivas {
+            background-color: var(--color-light-gray);
+            padding: 30px;
+            border-left: 5px solid #28a745; 
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .felhivas p {
+            font-size: 1.1em;
+        }
+
+        .megjegyzes {
+            font-style: italic;
+            font-size: 0.9em;
+            color: var(--color-dark-gray);
+            margin-top: 20px;
+        }
+
+        .bemutatkozas h3 {
+            font-size: 2.0em;
+            color: var(--color-gold);
+            text-align: center;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .cimek {
+            font-style: italic;
+            color: var(--color-dark-gray);
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .list-zsurizes, .list-eredmenyek, .list-tanulmanyok {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .list-zsurizes li, .list-tanulmanyok li {
+            margin-bottom: 5px;
+        }
+        .list-eredmenyek li {
+            margin-bottom: 8px;
+            border-left: 2px solid var(--color-gold);
+            padding-left: 10px;
+            background-color: var(--color-light-gray);
+            padding: 8px 10px;
+        }
+
+        .hitvallas {
+            margin-top: 20px;
+            font-size: 1.0em;
+        }
+
+        .idezet {
+            border-left: 3px solid var(--color-gold);
+            padding-left: 15px;
+            margin: 20px 0;
+            color: var(--color-dark-gray);
+            font-style: italic;
+            text-align: center;
+        }
+        
+        /* ÚJ: OKTATÁS KÉP STÍLUS */
+        .oktatas-kep-wrapper {
+            margin: 50px auto;
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+            border: 3px solid var(--color-gold);
+        }
+        .oktatas-kep-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
         /* ==================== LÁBLÉC ==================== */
         footer { 
             background-color: var(--color-black); 
@@ -517,6 +652,7 @@
             .about-content { flex-direction: column; text-align: center; }
             .style-grid { grid-template-columns: 1fr; } /* Szett stílusok mobilon */
             .style-card-image { height: 200px; } /* Kisebb kép mobilon */
+            .list-oktatas { columns: 1; } /* Oktatás lista egy oszlopba mobilon */
             
             /* VISSZAÁLLÍTVA: FOOTER MOBIL BEÁLLÍTÁSOK (Egymás alá kerülnek) */
             footer {
@@ -553,7 +689,7 @@
         <nav>
             <a href="#home" data-target="home" data-hu="Kezdőlap" data-en="Home">Kezdőlap</a> 
             <a href="#lashsets" data-target="lashsets" data-hu="Szett Stílusok" data-en="Lash Sets">Szett Stílusok</a>
-            <a href="#pricing" data-target="pricing" data-hu="Árlista" data-en="Pricing">Árlista</a>
+            <a href="#oktatas" data-target="oktatas" data-hu="Oktatás" data-en="Training">Oktatás</a> <a href="#pricing" data-target="pricing" data-hu="Árlista" data-en="Pricing">Árlista</a>
             <a href="#gallery" data-target="gallery" data-hu="Galéria" data-en="Gallery">Galéria</a>
             <a href="#aftercare" data-target="aftercare" data-hu="Ápolás" data-en="Aftercare">Ápolás</a> 
             <a href="#contact" data-target="contact" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</a> 
@@ -609,7 +745,7 @@
                 <div class="training-cta-box">
                     <h3>MASTER CLASS KÉPZÉS</h3>
                     <p>Emeld a technikádat a legmagasabb szintre! Limitált helyek.</p>
-                    <a href="#" class="cta-button" data-hu="Jelentkezési feltételek" data-en="Application Requirements">Jelentkezési feltételek</a>
+                    <a href="#oktatas-hu" class="cta-button" data-hu="Jelentkezési feltételek" data-en="Application Requirements">Jelentkezési feltételek</a>
                 </div>
             </div>
         </div>
@@ -653,8 +789,174 @@
                 <div class="training-cta-box">
                     <h3>MASTER CLASS TRAINING</h3>
                     <p>Elevate your technique to the highest level! Limited spots.</p>
-                    <a href="#" class="cta-button" data-hu="Jelentkezési feltételek" data-en="Application Requirements">Application Requirements</a>
+                    <a href="#oktatas-en" class="cta-button" data-hu="Jelentkezési feltételek" data-en="Application Requirements">Application Requirements</a>
                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="oktatas-hu" class="main-content hu oktatas-szekcio" style="display:none;">
+        <div class="kontener">
+            <h2>✨ EARLY XMAS LASH TRAINING! ✨</h2>
+            <p class="kiemeles">-10% kedvezmény minden képzésem árából az idei oktatás napokra!</p>
+
+            <p>A gyönyörű szettek nem véletlenül születnek.</p>
+            <p>A finom mozdulatok, a precíz illesztés és a tökéletes tartósság mind tanulható – ha a tudásra a megfelelő helyen teszel szert. </p>
+            
+            <h3>Egyéni, kiemelt oktatás</h3>
+            <p>Egyéni, kiemelt oktatás vár rád, ahol mindenre figyelek – a technikádra, a kéztartásodra, az apró hibákra, amik eddig megakadályozták, hogy a szettek valóban tökéletesek legyenek.</p>
+
+            <h4>Neked szól ez az oktatás, ha:</h4>
+            <ul class="list-oktatas">
+                <li>hiányosságaid vannak, és szeretnéd pótolni őket</li>
+                <li>a tartóssággal nem vagy elégedett</li>
+                <li>kezdőként egyénileg, részletesen szeretnéd elsajátítani a technikát</li>
+                <li>az illesztés még nem mindig tökéletes</li>
+                <li>a szettek néha kesze-kuszák</li>
+                <li>a premade szempillák illesztése nehézséget okoz</li>
+                <li>vagy az UV ragasztó használata még nem magabiztos</li>
+            </ul>
+            
+            <p>Itt minden apró részletre figyelek,hogy a munkád kifinomult, elegáns és tartós legyen – ahogy egy igazi lash stylisthoz illik.</p>
+
+            <div class="felhivas">
+                <p><strong>Jelentkezz most</strong>, és lépj be abba a világba, ahol a szépség a precizitással találkozik. Itt mindenre választ kapsz, amitől magabiztos és precíz lash stylist lehetsz — nem csak elméletben, hanem a gyakorlatban is! Kezdjük el együtt építeni a szakmai magabiztosságodat!</p>
+                <a href="mailto:selenyir@gmail.com" class="cta-button">Jelentkezem a képzésre</a>
+                <p class="megjegyzes">Igény esetén szalonhoz kivonulok. Oktatások 18-ik kerület Pestimrén</p>
+            </div>
+            
+            <div class="oktatas-kep-wrapper">
+                <img src="images/oktatas.jpg" alt="Selényi Renáta oktatási képzése">
+            </div>
+            <div class="bemutatkozas">
+                <h3>Selényi Renàta</h3>
+                <p class="cimek"><strong>Expert Trainer & Lash Stylist, Nemzetközi Oktató és Versenybíró.</strong></p>
+                <p class="cimek">Lash & Beauty tulajdonosa.</p>
+
+                <h4>Zsűrizések:</h4>
+                <ul class="list-zsurizes">
+                    <li>2020 – Zsűriként dolgoztam a Lash & Lashes Online Pilláskupa versenyen.</li>
+                    <li>2021- Zsűriként dolgoztam a Diamond World Lash Cup versenyen.</li>
+                    <li>2021- Zsűriként dolgoztam a Beauty Forum Lash & Lashes Èlő versenyén.</li>
+                    <li>2022- 2023- Zsűriként dolgoztam a Lash & Lashes Online Pillás kupa versenyen.</li>
+                </ul>
+
+                <h4>Eredményeim:</h4>
+                <ul class="list-eredmenyek">
+                    <li>2018. HOEC Hungarian Open Europe Cup: 2. helyezett 2D Duplázó kategóriában</li>
+                    <li>2019. Lash & Lashes Online Cup: 1. helyezett 3-5D Volume kategóriában, 3. helyezet 1D Classic kategóriában</li>
+                    <li>2019. International Lash Angel Challenge from Italy: 1. helyezett 2-3D Soft Volume kategóriában, Különdíj: “Best Work “ Kupa Celeste F.</li>
+                    <li>2019. Lash Flash Online Szempilla építő verseny: 1. helyezett 3-6D Volume kategóriában</li>
+                    <li>2019. Lash & Lashes International Eyelash Cup: 1. helyezett 2D Duplázó kategóriában, Különdíj: 3-5D Volume “Best Work” Cup LashStyle Academy</li>
+                    <li>2019. International Lash Queens Championships: 3. helyezett 3-5D Russian Volume Expert kategóriában</li>
+                    <li>2019. Hungarian Lash Queen: 2. helyezet Russian Volume 4-6D Expert</li>
+                    <li>2019. German Masters Lashextensions: 1.helyezett Maxx Volume Expert</li>
+                    <li>2020. Glami Online Lash Competition: 1.helyezet Volume Expert</li>
+                    <li>2020. Lash Angels Competition: 1.helyezet 4-9D Strong Volume Advanced, Különdíj: 4-9D Best Lash Work from judge Angelika Herter</li>
+                    <li>2021. ICONIC Lash& Brow Championship: 2.helyezet 3-4D Volume Expert</li>
+                    <li>2021. ICONIC Lash& Brow Championship: 1. helyezet M/L ív Expert</li>
+                </ul>
+                
+                <h4>Tanulmányaim:</h4>
+                <ul class="list-tanulmanyok">
+                    <li>2016. július: műszempilla építő alaptanfolyam.</li>
+                    <li>2017-ben: Szépségtanácsadói OKJ-s szakma.</li>
+                    <li>2017-ben: 2D Duplázo technika (Lash & Lashes és Szépség-Gyàr iskolába).</li>
+                    <li>2018-ban: 3-6 D Volume tanfolyam (Fejes Adrienn Trénernél és Szépség-Gyár iskola).</li>
+                    <li>2019-ben: Kozmetikus OKJ-s szakmát végeztem.</li>
+                    <li>2020-ban: Nagy Zsinett Trénernèl további képzéseken vettem részt Volume technika fejlesztèsében.</li>
+                    <li>2020-ban: Lash Marafon Webináriumon vettem részt (Elizabeth Langolf, Victoryia Yurlova, Madlen Gugkaeva, Maria Denisova, Inna Kharlamova, Ania Agarkova, Molnár- Olah Ildikó).</li>
+                </ul>
+
+                <p class="hitvallas">Sajátos technikát dolgoztam ki az elmúlt évek sajátos tapasztalataim alapján összevetve az összes tanfolyamon tanult tudással, mellyel folyamatosan eredményes éveket zártam. Számos Nemzetközi ,Hazai , Európai és Világversenyeken hoztam dobogós helyezést az elmúlt években.</p>
+                <p class="hitvallas">Elsődleges szempont és irányelvem a **tartós szempilla építése** amit kezdetek óta biztosítok, garantálok a vendégeimnek. </p>
+                <p class="hitvallas">Oktatói pályafutásom 2019. év közben kezdtem Örömömre szolgál ,hogy átadhatom tudásom és megszerettethetem ezt a szakmát jövendőbeli szempilla stylistokkal. Nagyon fontosnak tartom ,hogy professzionális, minőségi és jó alapanyagokkal dolgozzak és színvonalas szolgáltatást nyújtsak. **Maximalista** vagyok a munkámban és ezt az irányt mutatom a tanulóimnak.</p>
+                <blockquote class="idezet">
+                    “Szempilla stylistként a legnagyobb boldogság mikor a vendégeim belenéznek a tükörbe és mosolyogva,boldogan csodálják amit alkottam.”
+                </blockquote>
+                <p class="befejezes">Ha szeretnéd te is ezt a mosolyt látni az arcodon akkor várlak szeretettel.</p>
+            </div>
+        </div>
+    </section>
+    <section id="oktatas-en" class="main-content en oktatas-szekcio" style="display:none;">
+        <div class="kontener">
+            <h2>✨ EARLY XMAS LASH TRAINING! ✨</h2>
+            <p class="kiemeles">-10% discount on all my training courses for this year's training days!</p>
+
+            <p>Beautiful lash sets are not born by accident. The delicate movements, the precise bonding, and the perfect retention are all teachable – if you acquire the knowledge in the right place.</p>
+            
+            <h3>Individual, focused training</h3>
+            <p>Individual, dedicated training awaits you, where I pay attention to everything – your technique, your hand positioning, and the small mistakes that have prevented your sets from being truly perfect until now.</p>
+
+            <h4>This training is for you if:</h4>
+            <ul class="list-oktatas">
+                <li>you have gaps in your knowledge and want to fill them</li>
+                <li>you are not satisfied with the retention</li>
+                <li>as a beginner, you want to master the technique individually and in detail</li>
+                <li>the bonding is not always perfect yet</li>
+                <li>your sets sometimes look messy</li>
+                <li>applying premade lashes causes difficulties</li>
+                <li>or your use of UV glue is not yet confident</li>
+            </ul>
+            
+            <p>Here, I pay attention to every small detail to ensure your work is refined, elegant, and long-lasting – as befits a true lash stylist.</p>
+
+            <div class="felhivas">
+                <p><strong>Register now</strong> and step into a world where beauty meets precision. Here, you'll get answers to everything you need to become a confident and precise lash stylist — not just in theory, but in practice too! Let's start building your professional confidence together!</p>
+                <a href="mailto:selenyir@gmail.com" class="cta-button">Apply for Training</a>
+                <p class="megjegyzes">Upon request, I travel to salons. Training takes place in Pestimre, 18th district.</p>
+            </div>
+
+            <div class="oktatas-kep-wrapper">
+                <img src="images/oktatas.jpg" alt="Renáta Selényi training course">
+            </div>
+            <div class="bemutatkozas">
+                <h3>Renáta Selényi</h3>
+                <p class="cimek"><strong>Expert Trainer & Lash Stylist, International Educator and Judge.</strong></p>
+                <p class="cimek">Owner of Lash & Beauty.</p>
+
+                <h4>Judging Experience:</h4>
+                <ul class="list-zsurizes">
+                    <li>2020 – Judge at the Lash & Lashes Online Lash Cup competition.</li>
+                    <li>2021- Judge at the Diamond World Lash Cup competition.</li>
+                    <li>2021- Judge at the Beauty Forum Lash & Lashes Live competition.</li>
+                    <li>2022- 2023- Judge at the Lash & Lashes Online Lash Cup competition.</li>
+                </ul>
+
+                <h4>My Achievements:</h4>
+                <ul class="list-eredmenyek">
+                    <li>2018. HOEC Hungarian Open Europe Cup: 2nd place in 2D Doubling category</li>
+                    <li>2019. Lash & Lashes Online Cup: 1st place in 3-5D Volume category, 3rd place in 1D Classic category</li>
+                    <li>2019. International Lash Angel Challenge from Italy: 1st place in 2-3D Soft Volume category, Special Award: “Best Work” Cup Celeste F.</li>
+                    <li>2019. Lash Flash Online Eyelash Extension Competition: 1st place in 3-6D Volume category</li>
+                    <li>2019. Lash & Lashes International Eyelash Cup: 1st place in 2D Doubling category, Special Award: 3-5D Volume “Best Work” Cup LashStyle Academy</li>
+                    <li>2019. International Lash Queens Championships: 3rd place in 3-5D Russian Volume Expert category</li>
+                    <li>2019. Hungarian Lash Queen: 2nd place Russian Volume 4-6D Expert</li>
+                    <li>2019. German Masters Lashextensions: 1st place Maxx Volume Expert</li>
+                    <li>2020. Glami Online Lash Competition: 1st place Volume Expert</li>
+                    <li>2020. Lash Angels Competition: 1st place 4-9D Strong Volume Advanced, Special Award: 4-9D Best Lash Work from judge Angelika Herter</li>
+                    <li>2021. ICONIC Lash& Brow Championship: 2nd place 3-4D Volume Expert</li>
+                    <li>2021. ICONIC Lash& Brow Championship: 1st place M/L curl Expert</li>
+                </ul>
+                
+                <h4>My Studies:</h4>
+                <ul class="list-tanulmanyok">
+                    <li>July 2016: Eyelash extension basic course.</li>
+                    <li>2017: Beauty Consultant OKJ qualification.</li>
+                    <li>2017: 2D Doubling technique (Lash & Lashes and Szépség-Gyár school).</li>
+                    <li>2018: 3-6 D Volume course (Trainer Adrienn Fejes and Szépség-Gyár school).</li>
+                    <li>2019: Cosmetician OKJ qualification.</li>
+                    <li>2020: Attended further training courses with Trainer Zsinett Nagy in Volume technique development.</li>
+                    <li>2020: Attended the Lash Marathon Webinar, enhancing my knowledge through presentations by famous trainers (Elizabeth Langolf, Victoryia Yurlova, Madlen Gugkaeva, Maria Denisova, Inna Kharlamova, Ania Agarkova, Ildikó Molnár-Olah).</li>
+                </ul>
+
+                <p class="hitvallas">I developed my own technique based on my unique experiences over the past years, combining the knowledge gained from all my courses, which has led to continuously successful years. I have achieved podium finishes in numerous International, Domestic, European, and World competitions over the years.</p>
+                <p class="hitvallas">My primary focus and guiding principle is **long-lasting eyelash application**, which I have provided and guaranteed to my clients since the beginning.</p>
+                <p class="hitvallas">I began my teaching career in mid-2019. It is a pleasure to pass on my knowledge and make future lash stylists fall in love with this profession. I believe it is very important to work with professional, high-quality materials and provide a high-standard service. I am a **perfectionist** in my work, and I show this direction to my students.</p>
+                <blockquote class="idezet">
+                    “As a lash stylist, the greatest happiness is when my clients look in the mirror and smile, admiring what I have created.”
+                </blockquote>
+                <p class="befejezes">If you want to see that smile on your face too, I welcome you with love.</p>
             </div>
         </div>
     </section>
@@ -680,11 +982,6 @@
                     <div class="style-card-content">
                         <h3>2D Szett (Hybrid / Light Volume)</h3>
                         <p>A legtermészetesebb Volume technika, ahol két vékony Volume fan kerül egy saját pillára. Ideális azoknak, akik finom dúsítást szeretnének.</p>
-                        <ul class="key-features">
-                            <li>**Hatás:** Természetes, finom dúsítás</li>
-                            <li>**Pillák száma:** 2 szál Volume fan egy saját pillára</li>
-                            <li>**Kinek ajánlott:** Akik először próbálják a Volume szetteket, vagy természetes, de dúsabb hatásra vágynak.</li>
-                        </ul>
                     </div>
                 </div>
                 <div class="style-card">
@@ -1127,7 +1424,7 @@
                 clearInterval(carouselInterval);
             }
             // Az első kép legyen aktív az induláskor (ha még nem volt beállítva)
-            if (!items[currentIndex].classList.contains('active')) {
+            if (items.length > 0 && !items[currentIndex].classList.contains('active')) {
                 items[currentIndex].classList.add('active');
             }
             // Intervallum elindítása (5 másodpercenként)
@@ -1200,25 +1497,12 @@
             
             const parts = hash.split('-'); // pl. ['home', 'hu']
             const page = parts[0];
-            const lang = parts.length > 1 ? parts[1] : 'hu'; // 'hu' ha nincs nyelv megadva
+            const langFromHash = parts.length > 1 ? parts[1] : 'hu'; // 'hu' ha nincs nyelv megadva
 
-            // Ha a nyelv megváltozott, de a hash-ben még a régi van, újraindul a handler.
-            if (lang !== currentLang) {
-                 if (currentLang === 'hu') {
-                    // Ha új nyelv jön be (pl. angol), de a currentLang még HU
-                    // Frissítjük a globális változót, és elindítjuk a teljes frissítést
-                    currentLang = lang;
-                 } else {
-                    // Visszatér a régihez, ami most már helytelen
-                    // Hagyjuk, hogy a lentebb lévő logika beállítsa
-                    currentLang = lang;
-                 }
-            }
+            // Globális nyelv beállítása a hash alapján
+            currentLang = langFromHash;
 
-
-            // FONTOS JAVÍTÁS: Mindig frissítjük a nyelvi elemeket a hash-ben található nyelv alapján.
-            // Ez biztosítja a menü és az oldalfrissítés szinkronitását.
-            currentLang = lang;
+            // FONTOS: Mindig frissítjük a nyelvi elemeket a hash-ben található nyelv alapján.
             updateMenuText(currentLang);
             updateFollowBoxVisibility(currentLang);
             updateLangButtons();
@@ -1229,6 +1513,10 @@
                 section.classList.remove('active');
                 section.style.display = 'none';
                 section.removeAttribute('aria-hidden');
+                // Ha a szekció árlista, visszavesszük a fekete hátteret
+                if (section.classList.contains('pink-background-style')) {
+                     section.classList.remove('pink-background-style');
+                }
             });
             
             // Képsorozat leállítása
@@ -1238,7 +1526,10 @@
             if (page === 'contact') {
                 // Csak a navigációt frissítjük és a footerhez görgetünk
                 updateNavigation(page);
-                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                // Várni kell a menü frissítésére
+                setTimeout(() => {
+                    document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+                }, 0); 
                 return; // Nem kell section-t megjeleníteni
             }
 
@@ -1249,6 +1540,12 @@
                 activeSection.style.display = 'block';
                 activeSection.setAttribute('aria-hidden', 'false');
                 activeSection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Ha a szekció árlista, beállítjuk a rózsaszín hátteret
+                if (page === 'pricing') {
+                    activeSection.classList.add('pink-background-style');
+                }
+
 
                 // Navigáció frissítése
                 updateNavigation(page);
@@ -1260,10 +1557,11 @@
             } else {
                 // Kezeljük a nem létező oldalt (pl. policy.html, amit külön fájl kezel)
                 if (page === 'policy') {
-                    // Házirend/policy esetén nem csinálunk semmit, nem Section, a böngésző a policy.html-re visz.
+                    // Itt nem csinálunk semmit, nem Section, a böngésző a policy.html-re visz.
                 } else {
-                    // Ha nem létezik a szekció, visszaállunk a kezdőlapra
-                    window.location.hash = `home-${lang}`;
+                    // Ha nem létezik a szekció (pl. ha hiányzik a tartalom a váltott nyelven), 
+                    // visszaállunk a kezdőlapra az aktuális nyelven
+                    window.location.hash = `home-${currentLang}`;
                 }
             }
         }
@@ -1292,17 +1590,11 @@
             const basePage = hash.split('-')[0] || 'home';
             
             // Frissítjük a hash-t az új nyelvvel, ami elindítja a `routeChangeHandler`-t
-            if (!basePage) {
-                window.location.hash = `home-${lang}`;
-            } else {
-                window.location.hash = `${basePage}-${lang}`;
-            }
+            window.location.hash = `${basePage}-${lang}`;
+            
+            // FONTOS: Frissítjük a globális nyelvet is
+            currentLang = lang;
         }
-        
-        // Mivel a `routeChangeHandler` most már minden alkalommal frissíti a nyelvet
-        // és a menüszöveget, elegendő a hash változtatása (ami elindítja a `hashchange` eseményt).
-        // A `currentLang` globális változóval együtt beállítva ez biztosítja, hogy
-        // a `routeChangeHandler` minden frissítést megtegyen.
 
 
         /**
@@ -1332,7 +1624,7 @@
                 } else if (dataHu === translations.cta.pricing['hu']) {
                     textToSet = translations.cta.pricing[lang];
                 } else {
-                    // Ha nincs speciális fordítás (pl. a policy.html gombjánál)
+                    // Ha nincs speciális fordítás 
                     textToSet = btn.getAttribute(`data-${lang}`);
                 }
                 
@@ -1340,15 +1632,12 @@
                     btn.textContent = textToSet;
                 }
             });
-            
-            // Főoldali szövegek cseréje
-            // Ezt a nyelvi prefixek a section ID-ban oldják meg, a többi szöveg fix (pl. h2/h3)
         }
         
         
         // ==================== ESEMÉNYKEZELŐK ====================
         
-        // Hashchange eseményre (pl. menüpontra kattintás)
+        // Hashchange eseményre (pl. nyelvi váltás vagy menüpontra kattintás)
         window.addEventListener('hashchange', routeChangeHandler);
 
         // Nyelvi gombok eseményei
@@ -1358,36 +1647,55 @@
             });
         });
         
+        // FONTOS JAVÍTÁS: Navigációs linkek kattintási eseményének kezelése, 
+        // hogy mindig beállítsa a nyelvet a hash-be.
+        document.querySelectorAll('nav a').forEach(link => {
+            // Nem kell eseménykezelőt adni a policy.html-nek, mert az egy külső link
+            if (link.getAttribute('data-target') !== 'policy') {
+                link.addEventListener('click', (event) => {
+                    const targetPage = link.getAttribute('data-target');
+                    // Megakadályozzuk a natív hash ugrást, mert mi magunk állítjuk be a hash-t nyelvi prefixxel
+                    event.preventDefault(); 
+                    
+                    if (targetPage) {
+                        // Új hash beállítása az aktuális nyelven
+                        window.location.hash = `${targetPage}-${currentLang}`;
+                    }
+                });
+            }
+        });
+        
+        
         // Oldal betöltéskor
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Kezdeti nyelv megállapítása
+            // Kezdeti nyelv megállapítása a hash alapján
             let initialLang = 'hu'; 
+            const initialHash = window.location.hash.substring(1);
             
-            if (window.location.hash.includes('-en')) {
+            if (initialHash.includes('-en')) {
                 initialLang = 'en';
-            } else if (window.location.hash.includes('-hu')) {
+            } else if (initialHash.includes('-hu')) {
                 initialLang = 'hu';
             } else {
                 // Ha nincs hash, a default 'home' oldalt és az 'hu' nyelvet állítjuk be
                 window.location.hash = `home-hu`;
+                return; // A hashchange esemény kezeli a továbbiakat
             }
             
             currentLang = initialLang;
             
-            // Kezdeti hash beállítása
-            let basePage = window.location.hash.substring(1).split('-')[0] || 'home';
             // Meggyőződünk róla, hogy a hash tartalmazza a nyelvet is
-            if (!window.location.hash.includes(`-${currentLang}`)) {
+            let basePage = initialHash.split('-')[0] || 'home';
+            if (!initialHash.includes(`-${currentLang}`)) {
                 window.location.hash = `${basePage}-${currentLang}`;
+                return; // A hashchange esemény kezeli a továbbiakat
             }
 
             // Oldal elindítása a hashchange handler segítségével
             routeChangeHandler(); 
 
         });
-
-        
     </script>
     
     <script type="text/javascript">
