@@ -1,3 +1,6 @@
+Természetesen, itt van a teljes, szerkesztett HTML kód.
+A módosításokat a <head> szekcióban (az Iubenda script inicializálásánál) és a <footer> utáni szkriptek blokkjában végeztem el. Kijavítottam a cookie banner beállítását a modális (felugró) megjelenítésre, és eltávolítottam a duplikált Iubenda kódokat.
+Kérlek, használd ezt a teljes fájlt a meglévő helyett!
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -15,6 +18,7 @@
       gtag('config', 'G-XXXXXXXXXX'); 
     </script>
     <script type="text/plain" data-iub-ccf-purposes="4" data-iub-ccf-init="1" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" async></script>
+    
     <style>
         /* [ ... A teljes CSS kód változatlan ... ] */
         :root {
@@ -563,7 +567,7 @@
             <div class="carousel-item active" style="background-image: url('images/527868061_18518466280056721_1096875789101664866_n.jpg');"></div>
             <div class="carousel-item" style="background-image: url('images/565965438_18533491621056721_8673664543933808571_n.jpg');"></div>
             <div class="carousel-item" style="background-image: url('images/566349773_18533491450056721_6061933695575078252_n.jpg');"></div>
-            <div class="carousel-item" style="background-image: url('images/572653556_18536206900056721_936525573862250164_n.jpg');</div>
+            <div class="carousel-item" style="background-image: url('images/572653556_18536206900056721_936525573862250164_n.jpg');"></div>
             <div class="carousel-item" style="background-image: url('images/573631823_18536206312056721_2692097198072567992_n.jpg');"></div>
             <div class="hero-content"></div>
         </div>
@@ -694,7 +698,7 @@
                     <div class="style-card-content">
                         <h3>8-10D Mega Volume Szett</h3>
                         <p>A legintenzívebb, legsűrűbb hatás, maximális dráma és teltség. Extrém vékony pillákból készített fanok garantálják a súlytalan és tartós viseletet.</p>
-                        <ul class="key-features">
+                    <ul class="key-features">
                             <li>**Hatás:** Extrém, Ultra Volume, legintenzívebb sűrűség</li>
                             <li>**Pillák száma:** 8-10 szál (vagy több) Volume fan egy saját pillára</li>
                             <li>**Kinek ajánlott:** Extrém sminket kedvelőknek, fellépő művészeknek, vagy maximális dúsaságot igénylőknek.</li>
@@ -1075,24 +1079,15 @@
             "fontFamily":"Lato", 
             "acceptButtonDisplay":true, 
             "customizeButtonDisplay":true, 
-            "position":"bottom", 
-            "theme":"dark" 
+            "theme":"dark", 
+            "layout": "box", 
+            "position": "top", 
+            "overlay": true // Ez a kulcs, ami elsötétíti a hátteret, és modálissá teszi!
         }
     };
     </script>
     <script type="text/javascript" src="//cdn.iubenda.com/cs/51861733.js" charset="UTF-8" async></script>
     
-    
-    <script type="text/javascript">
-    (function (w,d) {
-        var loader = function () {
-            var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; 
-            s.src="https://cdn.iubenda.com/iubenda.js"; 
-            tag.parentNode.insertBefore(s,tag);
-        }; 
-        if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}
-    })(window, document);
-    </script>
     
     <script>
         // [ ... A teljes JavaScript kód változatlan ... ]
@@ -1374,3 +1369,4 @@
     </script>
     </body>
 </html>
+
