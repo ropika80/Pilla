@@ -766,6 +766,261 @@ section.main-content{padding:0; background:transparent;}
 .footer-map iframe, .contact-map iframe{width:100%; border:0; border-radius:18px;}
 .map-open-link{display:inline-block;margin-top:12px;color:var(--luxury-gold-2)!important;text-decoration:none;border-bottom:1px solid rgba(216,173,67,.55);}
 
+
+
+/* ==================== HERO KÉP JAVÍTÁS - kevésbé sötét, nem túl nagyított ==================== */
+.luxury-hero{
+    min-height:78vh !important;
+    height:78vh !important;
+    background:
+        radial-gradient(circle at 72% 48%, rgba(216,173,67,.13), transparent 33%),
+        linear-gradient(90deg, #030303 0%, #050505 46%, #090705 100%) !important;
+}
+
+.luxury-slide{
+    background-size:contain !important;
+    background-repeat:no-repeat !important;
+    background-color:transparent !important;
+    filter:brightness(1.12) contrast(1.05) saturate(1.04);
+}
+
+/* Képenkénti pozicionálás: a szempilla jobb oldalon marad, a szöveg nem takarja */
+.luxury-slide:nth-child(1){background-position:82% center !important;}
+.luxury-slide:nth-child(2){background-position:80% center !important;}
+.luxury-slide:nth-child(3){background-position:83% center !important;}
+.luxury-slide:nth-child(4){background-position:81% center !important;}
+.luxury-slide:nth-child(5){background-position:82% center !important;}
+.luxury-slide:nth-child(6){background-position:80% center !important;}
+
+.luxury-slide.active{
+    animation:kenBurnsSoft 15s linear forwards !important;
+}
+
+@keyframes kenBurnsSoft{
+    0%{transform:scale(1) translate3d(0,0,0);}
+    100%{transform:scale(1.025) translate3d(-.35%,.2%,0);}
+}
+
+.luxury-hero-overlay{
+    background:
+        linear-gradient(90deg,
+            rgba(0,0,0,.82) 0%,
+            rgba(0,0,0,.64) 34%,
+            rgba(0,0,0,.26) 58%,
+            rgba(0,0,0,.06) 100%),
+        radial-gradient(circle at 78% 48%,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,.08) 45%,
+            rgba(0,0,0,.34) 100%) !important;
+}
+
+.luxury-hero-content{
+    max-width:680px !important;
+    padding:165px 6% 60px !important;
+}
+
+.luxury-hero h1{
+    font-size:clamp(2.7rem,5.6vw,6rem) !important;
+}
+
+@media(max-width:900px){
+    .luxury-hero{
+        min-height:680px !important;
+        height:auto !important;
+    }
+    .luxury-slide{
+        background-size:cover !important;
+        filter:brightness(1.08) contrast(1.04);
+    }
+    .luxury-slide:nth-child(1),
+    .luxury-slide:nth-child(2),
+    .luxury-slide:nth-child(3),
+    .luxury-slide:nth-child(4),
+    .luxury-slide:nth-child(5),
+    .luxury-slide:nth-child(6){
+        background-position:68% center !important;
+    }
+    .luxury-hero-overlay{
+        background:
+            linear-gradient(90deg, rgba(0,0,0,.86), rgba(0,0,0,.54)),
+            radial-gradient(circle at 72% 38%, transparent 0%, rgba(0,0,0,.46) 74%) !important;
+    }
+    .luxury-hero-content{
+        padding:132px 24px 76px !important;
+        max-width:560px !important;
+    }
+}
+
+@media(max-width:560px){
+    .luxury-hero{min-height:640px !important;}
+    .luxury-hero h1{font-size:2.75rem !important;}
+    .luxury-slide:nth-child(1),
+    .luxury-slide:nth-child(2),
+    .luxury-slide:nth-child(3),
+    .luxury-slide:nth-child(4),
+    .luxury-slide:nth-child(5),
+    .luxury-slide:nth-child(6){
+        background-position:64% center !important;
+    }
+}
+
+
+
+/* ==================== HERO KÉP SZÉL LÁGYÍTÁS - SOFT EDGE / FEATHERED EDGE ==================== */
+/* Finoman összemossa a hero képek bal szélét a fekete háttérrel, hogy ne legyen éles vágás. */
+.luxury-hero{
+    isolation:isolate;
+}
+
+.luxury-hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:3;
+    background:
+        linear-gradient(90deg,
+            #030303 0%,
+            #030303 28%,
+            rgba(3,3,3,.96) 36%,
+            rgba(3,3,3,.70) 44%,
+            rgba(3,3,3,.34) 52%,
+            rgba(3,3,3,.08) 62%,
+            rgba(3,3,3,0) 72%
+        ),
+        linear-gradient(180deg,
+            rgba(3,3,3,.55) 0%,
+            rgba(3,3,3,0) 18%,
+            rgba(3,3,3,0) 78%,
+            rgba(3,3,3,.45) 100%
+        ),
+        radial-gradient(circle at 80% 50%,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0) 42%,
+            rgba(0,0,0,.20) 100%
+        );
+}
+
+.luxury-hero-overlay{
+    z-index:2 !important;
+}
+
+.luxury-hero-content{
+    z-index:4 !important;
+}
+
+.hero-arrow,
+.hero-dots{
+    z-index:5 !important;
+}
+
+@media(max-width:900px){
+    .luxury-hero::after{
+        background:
+            linear-gradient(90deg,
+                rgba(3,3,3,.82) 0%,
+                rgba(3,3,3,.58) 24%,
+                rgba(3,3,3,.24) 46%,
+                rgba(3,3,3,0) 70%
+            ),
+            linear-gradient(180deg,
+                rgba(3,3,3,.55) 0%,
+                rgba(3,3,3,0) 20%,
+                rgba(3,3,3,0) 76%,
+                rgba(3,3,3,.50) 100%
+            );
+    }
+}
+
+
+
+/* ==================== HERO FINOMHANGOLÁS 2 - KÉPENKÉNTI POZÍCIÓ ==================== */
+/* A bal oldali átmenet most csak finom peremlágyítás, nem takarja ki a szemeket. */
+.luxury-hero::after{
+    background:
+        linear-gradient(90deg,
+            #030303 0%,
+            rgba(3,3,3,.86) 7%,
+            rgba(3,3,3,.42) 15%,
+            rgba(3,3,3,.12) 24%,
+            rgba(3,3,3,0) 34%
+        ),
+        linear-gradient(180deg,
+            rgba(3,3,3,.38) 0%,
+            rgba(3,3,3,0) 16%,
+            rgba(3,3,3,0) 82%,
+            rgba(3,3,3,.40) 100%
+        ),
+        radial-gradient(circle at 72% 48%,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0) 54%,
+            rgba(0,0,0,.14) 100%
+        ) !important;
+}
+
+/* Kevésbé sötét overlay, hogy a pilla jobban látszódjon. */
+.luxury-hero-overlay{
+    background:
+        linear-gradient(90deg,
+            rgba(0,0,0,.70) 0%,
+            rgba(0,0,0,.50) 30%,
+            rgba(0,0,0,.18) 58%,
+            rgba(0,0,0,.04) 100%),
+        radial-gradient(circle at 74% 48%,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,.05) 48%,
+            rgba(0,0,0,.26) 100%) !important;
+}
+
+/* Egyesével hangolt hero képpozíciók. 
+   Kisebb % = a kép/téma jobbra kerül a képernyőn. */
+.luxury-slide:nth-child(1){background-position:64% center !important;}
+.luxury-slide:nth-child(2){background-position:60% center !important;}
+.luxury-slide:nth-child(3){background-position:50% center !important;}
+.luxury-slide:nth-child(4){background-position:58% center !important;}
+.luxury-slide:nth-child(5){background-position:56% center !important;}
+.luxury-slide:nth-child(6){background-position:60% center !important;}
+
+/* A gyengébb felbontás miatt még finomabb zoom. */
+.luxury-slide.active{
+    animation:kenBurnsUltraSoft 15s linear forwards !important;
+}
+@keyframes kenBurnsUltraSoft{
+    0%{transform:scale(1) translate3d(0,0,0);}
+    100%{transform:scale(1.012) translate3d(-.15%,.08%,0);}
+}
+
+@media(max-width:900px){
+    .luxury-hero::after{
+        background:
+            linear-gradient(90deg,
+                rgba(3,3,3,.72) 0%,
+                rgba(3,3,3,.42) 18%,
+                rgba(3,3,3,.12) 36%,
+                rgba(3,3,3,0) 60%
+            ),
+            linear-gradient(180deg,
+                rgba(3,3,3,.42) 0%,
+                rgba(3,3,3,0) 18%,
+                rgba(3,3,3,0) 78%,
+                rgba(3,3,3,.48) 100%
+            ) !important;
+    }
+    .luxury-hero-overlay{
+        background:
+            linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.42)),
+            radial-gradient(circle at 70% 38%,transparent 0%,rgba(0,0,0,.34) 76%) !important;
+    }
+    .luxury-slide:nth-child(1),
+    .luxury-slide:nth-child(2),
+    .luxury-slide:nth-child(3),
+    .luxury-slide:nth-child(4),
+    .luxury-slide:nth-child(5),
+    .luxury-slide:nth-child(6){
+        background-position:62% center !important;
+    }
+}
+
 </style>
     
     </head>
