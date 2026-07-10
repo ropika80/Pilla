@@ -6,16 +6,7 @@
     <title>Lash & Beauty Selényi Renáta - KEZDŐLAP</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght{700}&family=Lato:wght{300;400;700}&display=swap" rel="stylesheet">
-    
-    <script type="text/plain" data-iub-ccf-purposes="4" data-iub-ccf-init="1">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX'); 
-    </script>
-    <script type="text/plain" data-iub-ccf-purposes="4" data-iub-ccf-init="1" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" async></script>
-    
-    <style>
+<style>
         /* ==================== ALAP ÉS EGYÉB STÍLUSOK (KOMBINÁLT) ==================== */
         :root {
             --color-black: #000000;
@@ -1021,6 +1012,66 @@ section.main-content{padding:0; background:transparent;}
     }
 }
 
+
+
+/* ==================== SAJÁT SÜTIKEZELŐ ==================== */
+.cookie-consent-root,
+.cookie-consent-root * { box-sizing: border-box; }
+.cookie-consent-root { position: relative; z-index: 99999; font-family: var(--font-secondary, 'Lato', sans-serif); }
+.cookie-backdrop {
+    position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+    padding: 20px; background: rgba(0,0,0,.72); backdrop-filter: blur(7px);
+}
+.cookie-backdrop.is-open { display: flex; }
+.cookie-banner {
+    position: fixed; left: 18px; right: 18px; bottom: 18px; display: none;
+    max-width: 1180px; margin: 0 auto; padding: 22px;
+    background: linear-gradient(145deg, rgba(12,12,12,.98), rgba(3,3,3,.98));
+    color: #fff; border: 1px solid rgba(216,173,67,.55); border-radius: 20px;
+    box-shadow: 0 24px 80px rgba(0,0,0,.65);
+}
+.cookie-banner.is-open { display: grid; grid-template-columns: 1fr auto; gap: 22px; align-items: center; }
+.cookie-copy h2, .cookie-modal h2 { margin: 0 0 8px; color: #f0cb72; font-size: 1.35rem; text-transform: none; letter-spacing: .02em; }
+.cookie-copy p, .cookie-modal p { margin: 0; color: #ddd4ca; font-size: .96rem; line-height: 1.6; }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+.cookie-btn {
+    appearance: none; border: 1px solid rgba(216,173,67,.72); border-radius: 12px;
+    padding: 12px 17px; font: inherit; font-weight: 700; cursor: pointer;
+    background: transparent; color: #f7f1e8; transition: .22s ease;
+}
+.cookie-btn:hover { transform: translateY(-1px); border-color: #f0cb72; }
+.cookie-btn-primary { background: linear-gradient(135deg,#f0cb72,#d8ad43); color: #070707; border-color: transparent; }
+.cookie-btn-muted { border-color: rgba(255,255,255,.28); color: #fff; }
+.cookie-modal {
+    width: min(680px, 100%); max-height: min(760px, calc(100vh - 40px)); overflow: auto;
+    padding: 28px; border: 1px solid rgba(216,173,67,.55); border-radius: 22px;
+    background: linear-gradient(160deg,#111,#050505); color: #fff;
+    box-shadow: 0 30px 100px rgba(0,0,0,.75); position: relative;
+}
+.cookie-close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); background: #090909; color: #fff; font-size: 1.35rem; cursor: pointer; }
+.cookie-category { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; padding: 18px 0; border-top: 1px solid rgba(255,255,255,.1); }
+.cookie-category:first-of-type { margin-top: 20px; }
+.cookie-category h3 { margin: 0 0 4px; font-family: var(--font-secondary, 'Lato', sans-serif); font-size: 1rem; text-transform: none; letter-spacing: 0; color: #fff; }
+.cookie-category p { font-size: .88rem; }
+.cookie-required { color: #f0cb72; font-size: .82rem; font-weight: 700; white-space: nowrap; }
+.cookie-switch { position: relative; width: 54px; height: 30px; display: inline-block; }
+.cookie-switch input { position: absolute; opacity: 0; pointer-events: none; }
+.cookie-slider { position: absolute; inset: 0; border-radius: 999px; background: #494949; cursor: pointer; transition: .2s ease; }
+.cookie-slider::before { content: ''; position: absolute; width: 22px; height: 22px; left: 4px; top: 4px; border-radius: 50%; background: #fff; transition: .2s ease; }
+.cookie-switch input:checked + .cookie-slider { background: #d8ad43; }
+.cookie-switch input:checked + .cookie-slider::before { transform: translateX(24px); }
+.cookie-modal-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+.cookie-footer-link { border: 0; padding: 0; background: transparent; color: var(--luxury-gold-2,#f0cb72); text-decoration: underline; cursor: pointer; font: inherit; }
+.cookie-policy-note { margin-top: 14px !important; font-size: .82rem !important; color: #aaa197 !important; }
+@media (max-width: 760px) {
+    .cookie-banner { left: 10px; right: 10px; bottom: 10px; padding: 18px; }
+    .cookie-banner.is-open { grid-template-columns: 1fr; }
+    .cookie-actions { justify-content: stretch; }
+    .cookie-actions .cookie-btn { flex: 1 1 100%; }
+    .cookie-modal { padding: 24px 18px; }
+    .cookie-modal-actions .cookie-btn { flex: 1 1 100%; }
+}
+
 </style>
     
     </head>
@@ -1839,7 +1890,7 @@ section.main-content{padding:0; background:transparent;}
             <iframe src="https://maps.google.com/maps?hl=hu&q=Nemes%20utca%20%C3%A9s%20D%C3%B3zsa%20Gy%C3%B6rgy%20utca%2C%201188%20Budapest&t=k&z=18&ie=UTF8&iwloc=B&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <a class="map-open-link" href="https://www.google.com/maps/search/?api=1&query=Nemes%20utca%20%C3%A9s%20D%C3%B3zsa%20Gy%C3%B6rgy%20utca%2C%201188%20Budapest" target="_blank" rel="noopener">Google Maps-ben</a>
         </div>
-        <div class="footer-bottom">© 2025 Lash & Beauty. All rights reserved. | <a href="https://www.iubenda.com/privacy-policy/58263457" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe" title="Privacy Policy">Privacy Policy</a> | <a href="https://www.iubenda.com/privacy-policy/58263457/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe" title="Cookie Policy">Cookie Policy</a></div>
+        <div class="footer-bottom">© 2025 Lash & Beauty. All rights reserved. | <button type="button" class="cookie-footer-link" data-cookie-open> Süti beállítások</button></div>
     </footer>
     
     <script>
@@ -2094,12 +2145,232 @@ if (targetSection) {
     });
     </script>
 
-    <script type="text/javascript">
-    var _iub = _iub || [];
-    _iub.csConfiguration = {"consentOnFiliation":true,"cookiePolicyId":58263457,"siteId":"84bb2fbc","timeoutRemoval":{ "services": [ /* List of services to remove after timeout (e.g., GA) */ ] }, "whitelabel":false,"lang":"hu", "banner":{ "content":"A weboldal sütiket használ a jobb felhasználói élmény érdekében. A folytatáshoz fogadja el azokat.", "fontFamily":"Lato", "acceptButtonDisplay":true, "customizeButtonDisplay":true, "position":"bottom", "theme":"dark" }};
-    </script>
-    
-    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/84bb2fbc-25a2-46a9-9638-c2384a9a1705.js"></script>
-    
+
+<div class="cookie-consent-root" id="cookieConsentRoot">
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="true" aria-labelledby="cookieBannerTitle" aria-describedby="cookieBannerText">
+        <div class="cookie-copy">
+            <h2 id="cookieBannerTitle">Süti beállítások</h2>
+            <p id="cookieBannerText">A weboldal a működéshez szükséges sütiket mindig használja. Az analitikai és marketing sütik csak az Ön hozzájárulása után kapcsolódnak be. A választását később bármikor módosíthatja.</p>
+        </div>
+        <div class="cookie-actions">
+            <button type="button" class="cookie-btn cookie-btn-muted" data-cookie-reject>Mindet elutasítom</button>
+            <button type="button" class="cookie-btn" data-cookie-settings>Beállítások</button>
+            <button type="button" class="cookie-btn cookie-btn-primary" data-cookie-accept>Mindet elfogadom</button>
+        </div>
+    </div>
+
+    <div class="cookie-backdrop" id="cookieBackdrop" aria-hidden="true">
+        <div class="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+            <button type="button" class="cookie-close" data-cookie-close aria-label="Bezárás">×</button>
+            <h2 id="cookieModalTitle">Süti beállítások</h2>
+            <p>Ön döntheti el, hogy a feltétlenül szükséges sütiken kívül mely kategóriákat engedélyezi.</p>
+
+            <div class="cookie-category">
+                <div>
+                    <h3>Feltétlenül szükséges sütik</h3>
+                    <p>Az oldal alapvető működéséhez és a süti-beállítás megjegyzéséhez szükségesek.</p>
+                </div>
+                <span class="cookie-required">Mindig aktív</span>
+            </div>
+            <div class="cookie-category">
+                <div>
+                    <h3>Analitikai sütik</h3>
+                    <p>Névtelen vagy összesített látogatottsági adatokkal segítenek az oldal fejlesztésében.</p>
+                </div>
+                <label class="cookie-switch">
+                    <input type="checkbox" id="cookieAnalytics">
+                    <span class="cookie-slider"></span>
+                </label>
+            </div>
+            <div class="cookie-category">
+                <div>
+                    <h3>Marketing sütik</h3>
+                    <p>Hirdetési és közösségi média szolgáltatások személyre szabására használhatók. Jelenleg az oldal nem tölt be ilyen szolgáltatást.</p>
+                </div>
+                <label class="cookie-switch">
+                    <input type="checkbox" id="cookieMarketing">
+                    <span class="cookie-slider"></span>
+                </label>
+            </div>
+            <p class="cookie-policy-note">A hozzájárulás visszavonása ugyanolyan egyszerű: a láblécben található „Süti beállítások” gombbal bármikor újra megnyitható ez az ablak.</p>
+            <div class="cookie-modal-actions">
+                <button type="button" class="cookie-btn cookie-btn-muted" data-cookie-reject>Mindet elutasítom</button>
+                <button type="button" class="cookie-btn cookie-btn-primary" data-cookie-save>Beállítások mentése</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+(function () {
+    'use strict';
+
+    const STORAGE_KEY = 'lashbeauty_cookie_consent_v1';
+    const CONSENT_MAX_AGE_DAYS = 180;
+    const GA_MEASUREMENT_ID = 'G-0CF36616TR';
+
+    const banner = document.getElementById('cookieBanner');
+    const backdrop = document.getElementById('cookieBackdrop');
+    const analyticsInput = document.getElementById('cookieAnalytics');
+    const marketingInput = document.getElementById('cookieMarketing');
+    let analyticsLoaded = false;
+
+    // Google Consent Mode v2: minden opcionális adattárolás alapból tiltva.
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+    });
+    window['ga-disable-' + GA_MEASUREMENT_ID] = true;
+
+    function readConsent() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return null;
+            const value = JSON.parse(raw);
+            const age = Date.now() - Number(value.savedAt || 0);
+            const maxAge = CONSENT_MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
+            if (!value.savedAt || age > maxAge) {
+                localStorage.removeItem(STORAGE_KEY);
+                return null;
+            }
+            return value;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function saveConsent(analytics, marketing) {
+        const value = {
+            necessary: true,
+            analytics: Boolean(analytics),
+            marketing: Boolean(marketing),
+            savedAt: Date.now(),
+            version: 1
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+        applyConsent(value);
+        closeAll();
+    }
+
+    function loadGoogleAnalytics() {
+        if (analyticsLoaded || !GA_MEASUREMENT_ID) return;
+        analyticsLoaded = true;
+        window['ga-disable-' + GA_MEASUREMENT_ID] = false;
+        window.gtag('consent', 'update', {
+            analytics_storage: 'granted',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        window.gtag('js', new Date());
+        window.gtag('config', GA_MEASUREMENT_ID, {
+            anonymize_ip: true,
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false
+        });
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_MEASUREMENT_ID);
+        document.head.appendChild(script);
+    }
+
+    function disableGoogleAnalytics() {
+        window['ga-disable-' + GA_MEASUREMENT_ID] = true;
+        window.gtag('consent', 'update', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        // A korábban létrehozott GA sütik eltávolítása a saját domainről.
+        ['_ga', '_gid', '_gat'].forEach(function (name) {
+            document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+            document.cookie = name + '=; Max-Age=0; path=/; domain=' + location.hostname + '; SameSite=Lax';
+        });
+        document.cookie.split(';').forEach(function (cookie) {
+            const name = cookie.split('=')[0].trim();
+            if (name.indexOf('_ga_') === 0) {
+                document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+                document.cookie = name + '=; Max-Age=0; path=/; domain=' + location.hostname + '; SameSite=Lax';
+            }
+        });
+    }
+
+    function applyConsent(value) {
+        if (value && value.analytics) {
+            loadGoogleAnalytics();
+        } else {
+            disableGoogleAnalytics();
+        }
+    }
+
+    function openBanner() {
+        if (banner) banner.classList.add('is-open');
+    }
+
+    function openSettings() {
+        const current = readConsent();
+        analyticsInput.checked = Boolean(current && current.analytics);
+        marketingInput.checked = Boolean(current && current.marketing);
+        if (banner) banner.classList.remove('is-open');
+        if (backdrop) {
+            backdrop.classList.add('is-open');
+            backdrop.setAttribute('aria-hidden', 'false');
+        }
+    }
+
+    function closeSettings() {
+        if (backdrop) {
+            backdrop.classList.remove('is-open');
+            backdrop.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function closeAll() {
+        if (banner) banner.classList.remove('is-open');
+        closeSettings();
+    }
+
+    document.querySelectorAll('[data-cookie-accept]').forEach(function (button) {
+        button.addEventListener('click', function () { saveConsent(true, true); });
+    });
+    document.querySelectorAll('[data-cookie-reject]').forEach(function (button) {
+        button.addEventListener('click', function () { saveConsent(false, false); });
+    });
+    document.querySelectorAll('[data-cookie-settings], [data-cookie-open]').forEach(function (button) {
+        button.addEventListener('click', openSettings);
+    });
+    document.querySelectorAll('[data-cookie-close]').forEach(function (button) {
+        button.addEventListener('click', closeSettings);
+    });
+    document.querySelectorAll('[data-cookie-save]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            saveConsent(analyticsInput.checked, marketingInput.checked);
+        });
+    });
+    if (backdrop) {
+        backdrop.addEventListener('click', function (event) {
+            if (event.target === backdrop) closeSettings();
+        });
+    }
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeSettings();
+    });
+
+    const storedConsent = readConsent();
+    if (storedConsent) {
+        applyConsent(storedConsent);
+    } else {
+        openBanner();
+    }
+})();
+</script>
+
 </body>
 </html>
